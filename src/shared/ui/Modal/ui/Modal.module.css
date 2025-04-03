@@ -1,0 +1,44 @@
+.modalOverlay {
+	position: fixed;
+	top: 0;
+	z-index: 1231;
+	overflow: auto;
+
+	display: block;
+
+	width: 100%;
+	height: 100%;
+
+	background: none;
+
+	display: flex;
+}
+
+.modalOverlay.leftAttach {
+	flex-direction: row;
+}
+.modalOverlay.rightAttach {
+	flex-direction: row-reverse;
+}
+
+.modalOverlay.rightAttach .modalWrapper {
+	margin: 0;
+}
+
+.modalWrapper {
+	margin: 0 auto;
+
+	align-self: center;
+}
+
+.modalWrapper.topAlign {
+	align-self: flex-start;
+}
+
+.modalWrapper.centerAlign {
+	align-self: center;
+}
+
+.modalWrapper.downAlign {
+	align-self: flex-end;
+}

@@ -1,0 +1,33 @@
+:root {
+	/*=======COLORS=======*/
+	//Base
+	--at-ui-colors-background: var(--at-color-black-700);
+	--at-ui-colors-text-primary: var(--at-color-white-900);
+	/*====================*/
+
+	/*=======TEXT FONT SIZE=======*/
+	//Desktop
+	--at-ui-text-fs-h1-desktop: 52px;
+	--at-ui-text-fs-h2-desktop: 48px;
+	--at-ui-text-fs-h3-desktop: 32px;
+	--at-ui-text-fs-standard-desktop: 20px;
+	//Tablet
+	--at-ui-text-fs-h1-tablet: 32px;
+	--at-ui-text-fs-h2-tablet: 24px;
+	--at-ui-text-fs-h3-tablet: 20px;
+	--at-ui-text-fs-standard-tablet: 14px;
+	//Phone
+	--at-ui-text-fs-h1-phone: 18px;
+	--at-ui-text-fs-h2-phone: 16px;
+	--at-ui-text-fs-h3-phone: 14px;
+	--at-ui-text-fs-standard-phone: 12px;
+	/*============================*/
+
+	/*=======CARD=======*/
+
+	//maybe remove 'ui' prefix
+	--at-ui-card-background: var(--at-color-black-400);
+	--at-ui-card-padding: 48px 26px;
+	--at-ui-card-height: 550px;
+	--at-ui-card-width: 400px;
+}

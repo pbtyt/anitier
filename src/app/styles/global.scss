@@ -1,0 +1,149 @@
+@use './mixins.scss' as m;
+@use './variables.scss';
+@use './palette.scss';
+
+* {
+	font-family: var(--font-zen);
+	margin: 0px;
+	padding: 0px;
+
+	box-sizing: border-box;
+
+	-webkit-tap-highlight-color: transparent;
+}
+
+*,
+*:focus,
+*:hover {
+	outline: none;
+}
+
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+body {
+	background: var(--at-ui-colors-background);
+	color: var(--at-ui-colors-text-primary);
+
+	width: 100%;
+	height: 100vh;
+
+	overflow-y: scroll;
+}
+body.of-h {
+	position: fixed;
+	width: 100%;
+	overflow: hidden;
+}
+
+img {
+	user-select: none;
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+li {
+	list-style: none;
+}
+
+button {
+	border: none;
+	outline: none;
+	background: transparent;
+	cursor: pointer;
+	user-select: none;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+h1,
+h2,
+h3,
+p {
+	line-height: 100%;
+	color: var(--at-ui-colors-white);
+}
+h1 {
+	font-size: var(--at-ui-text-fs-h1-desktop);
+	font-weight: 700;
+
+	@include m.tablet {
+		font-size: var(--at-ui-text-fs-h1-tablet);
+		font-weight: 700;
+	}
+
+	@include m.mobile {
+		font-size: var(--at-ui-text-fs-h1-phone);
+		font-weight: 500;
+	}
+}
+
+h2 {
+	font-size: var(--at-ui-text-fs-h2-desktop);
+	font-weight: 600;
+
+	@include m.tablet {
+		font-size: var(--at-ui-text-fs-h2-tablet);
+		font-weight: 600;
+	}
+
+	@include m.mobile {
+		font-size: var(--at-ui-text-fs-h2-phone);
+		font-weight: 600;
+	}
+}
+
+h3 {
+	font-size: var(--at-ui-text-fs-h3-desktop);
+	font-weight: 600;
+
+	@include m.tablet {
+		font-size: var(--at-ui-text-fs-h3-tablet);
+		font-weight: 600;
+	}
+
+	@include m.mobile {
+		font-size: var(--at-ui-text-fs-h3-phone);
+		font-weight: 600;
+	}
+}
+
+p {
+	font-size: var(--at-ui-text-fs-standard-desktop);
+	font-weight: 400;
+
+	@include m.tablet {
+		font-size: var(--at-ui-text-fs-standard-tablet);
+		font-weight: 400;
+	}
+
+	@include m.mobile {
+		font-size: var(--at-ui-text-fs-standard-mobile);
+		font-weight: 400;
+	}
+}
+
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
+	-webkit-appearance: none;
+}
+
+input {
+	outline: 0;
+	border: 0;
+}
+
+p {
+	font-size: 13px;
+	line-height: 20px;
+	margin-bottom: 1rem;
+	color: rgba(255, 255, 255, 0.78);
+}

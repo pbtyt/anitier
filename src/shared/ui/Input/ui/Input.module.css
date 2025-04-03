@@ -1,0 +1,21 @@
+.input {
+	padding: 15px;
+
+	color: rgba(255, 255, 255, 0.96);
+	caret-color: rgba(255, 255, 255, 0.96);
+	background-color: rgba(139, 136, 146, 0.32);
+	border: none;
+
+	border-radius: 8px;
+
+	line-height: 24px;
+	font-size: 16px;
+
+	width: 100%;
+}
+
+.input::placeholder {
+	font-weight: 500;
+	font-size: 16px;
+	color: rgba(255, 255, 255, 0.56);
+}

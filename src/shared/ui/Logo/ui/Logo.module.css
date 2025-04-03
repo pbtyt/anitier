@@ -1,0 +1,17 @@
+.logoWrapper {
+	height: auto;
+	width: 4.74em;
+	margin-right: 2.5em;
+}
+
+.logo {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+	.logoWrapper {
+		width: 4em;
+	}
+}
