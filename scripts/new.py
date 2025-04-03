@@ -1,48 +1,69 @@
 import argparse
-from os import chdir, mkdir
-from os.path import isdir as is_dir_exist
+from pathlib import Path
 
-arg_parser = argparse.ArgumentParser(description="TEXT")
+def create_component_structure(layer: str, filename: str) -> None:
+    if layer.lower() == "shared":
+        print("Skipping generation for shared layer.")
+        return
 
-arg_parser.add_argument("--g", action='store_true', help="Gen Mode")
-arg_parser.add_argument("--layer", "--l", help="Layer", required=True)
-arg_parser.add_argument("--filename", "--fn", "-f", help="File Name", required=True)
+    src_dir = Path("../src").resolve()
+    if not src_dir.exists():
+        raise FileNotFoundError(f"Source directory '{src_dir}' not found.")
 
-args = arg_parser.parse_args()
+    layer_dir = src_dir / layer
+    layer_dir.mkdir(exist_ok=True)
 
-if args.g:
-	if args.layer == "shared": exit()
+    component_dir = layer_dir / filename.lower()
+    component_dir.mkdir(exist_ok=True)
 
-	chdir("../src/")
-	if (not is_dir_exist(args.layer)):
-		mkdir(args.layer)
+    ui_dir = component_dir / "ui"
+    ui_dir.mkdir(exist_ok=True)
 
-	chdir(args.layer)
+    # Create index.ts
+    index_content = f"export {{ {filename} }} from './ui/{filename}'\n"
+    index_path = component_dir / "index.ts"
+    safe_write(index_path, index_content)
 
-	mkdir(args.filename.lower())
-	chdir(args.filename.lower())
+    # Create SCSS module
+    scss_content = ".wrapper {}\n"
+    scss_path = ui_dir / f"{filename}.module.scss"
+    safe_write(scss_path, scss_content)
 
-	mkdir("ui")
+    # Create TSX component
+    tsx_content = f"""import styles from './{filename}.module.scss'
 
-	with("index.ts", "w") as file:
-		file.write(f"export '{{' {args.filename} '}}' from './ui/{args.filename}")
+export function {filename}() {{
+    return (
+        <div className={{styles.wrapper}}>
+        </div>
+    );
+}}
+"""
+    tsx_path = ui_dir / f"{filename}.tsx"
+    safe_write(tsx_path, tsx_content)
 
-	chdir("ui")
+    print(f"Component '{filename}' created successfully in {layer} layer.")
 
-	file = open(f"{args.filename}.module.scss", "x")
-	file.close()
+def safe_write(path: Path, content: str) -> None:
+    if path.exists():
+        print(f"File '{path}' already exists. Skipping.")
+        return
+    path.write_text(content, encoding="utf-8")
 
-	with open(f"{args.filename}.tsx", "w") as file:
-		file.writelines(
-			[f"import styles from './{args.filename}.module.scss'",
-			 f"export function {args.filename}() '{{'",
-			 f"\treturn (",
-			 f"\t\t<div className='{{'styles.wrapper'}}'>",
-			 f"\t\t</div>",
-			 f"\t);",
-			 f"'}}'"
-			]
-		)
+def main():
+    parser = argparse.ArgumentParser(description="Component structure generator")
+    parser.add_argument("--g", action="store_true", help="Enable generation mode")
+    parser.add_argument("--layer", "--l", help="Target layer for component")
+    parser.add_argument("--filename", "--fn", "-f", help="Component name")
+    
+    args = parser.parse_args()
+    
+    if args.g:
+        if not args.layer or not args.filename:
+            parser.error("Both --layer and --filename are required in generation mode")
+        create_component_structure(args.layer, args.filename)
+    else:
+        parser.print_help()
 
-if not args.g:
-	arg_parser.print_help()
+if __name__ == "__main__":
+    main()
