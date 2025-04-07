@@ -31,6 +31,19 @@ body {
 	height: 100vh;
 
 	overflow-y: scroll;
+
+	font-size: var(--at-ui-text-fs-standard-desktop);
+	font-weight: 400;
+
+	@include m.tablet {
+		font-size: var(--at-ui-text-fs-standard-tablet);
+		font-weight: 400;
+	}
+
+	@include m.mobile {
+		font-size: var(--at-ui-text-fs-standard-mobile);
+		font-weight: 400;
+	}
 }
 body.of-h {
 	position: fixed;
@@ -67,7 +80,6 @@ h2,
 h3,
 p {
 	line-height: 100%;
-	color: var(--at-ui-colors-white);
 }
 h1 {
 	font-size: var(--at-ui-text-fs-h1-desktop);
@@ -136,14 +148,17 @@ input[type='search']::-webkit-search-results-decoration {
 	-webkit-appearance: none;
 }
 
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type='number'] {
+	-moz-appearance: textfield;
+}
+
 input {
 	outline: 0;
 	border: 0;
-}
-
-p {
-	font-size: 13px;
-	line-height: 20px;
-	margin-bottom: 1rem;
-	color: rgba(255, 255, 255, 0.78);
 }

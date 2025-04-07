@@ -38,22 +38,3 @@
 		text-align: center;
 	}
 }
-
-.cardWrapper.add {
-	border: 2px dashed var(--at-color-black-100);
-
-	background: transparent;
-
-	justify-content: center;
-
-	.cardPoster {
-		border-style: dashed;
-	}
-
-	transition: background 300ms ease-out;
-	&:hover {
-		background: var(--at-color-black-600);
-
-		transition: background 300ms ease-in;
-	}
-}

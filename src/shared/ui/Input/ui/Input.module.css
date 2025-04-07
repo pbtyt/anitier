@@ -1,11 +1,11 @@
 .input {
-	padding: 15px;
+	padding: 12px;
 
-	color: rgba(255, 255, 255, 0.96);
-	caret-color: rgba(255, 255, 255, 0.96);
-	background-color: rgba(139, 136, 146, 0.32);
+	color: var(--at-color-white-500);
+	caret-color: var(--at-color-white-500);
+	background-color: var(--at-color-gray-950);
+
 	border: none;
-
 	border-radius: 8px;
 
 	line-height: 24px;
@@ -17,5 +17,5 @@
 .input::placeholder {
 	font-weight: 500;
 	font-size: 16px;
-	color: rgba(255, 255, 255, 0.56);
+	color: var(--at-color-gray-200);
 }

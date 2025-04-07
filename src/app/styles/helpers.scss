@@ -1,0 +1,3 @@
+@function hex-w-alpha($color, $alpha) {
+	@return rgb(from $color r g b / #{$alpha});
+}

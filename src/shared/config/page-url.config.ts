@@ -1,8 +1,8 @@
 class SITE {
 	HOME = '/main';
-	CHOOSE = '/choose';
+	CHOOSE = '/c';
 	EDIT_TITLE = '/edit';
-	ADD_NEW_TITLE = '/add-new';
+	ADD_NEW_TITLE = '/add';
 }
 
 export const SITE_ROUTES_BASE = new SITE();

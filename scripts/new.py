@@ -13,7 +13,8 @@ def create_component_structure(layer: str, filename: str) -> None:
     layer_dir = src_dir / layer
     layer_dir.mkdir(exist_ok=True)
 
-    component_dir = layer_dir / filename.lower()
+    folderName = filename[0].lower() + filename[1:]
+    component_dir = layer_dir / folderName
     component_dir.mkdir(exist_ok=True)
 
     ui_dir = component_dir / "ui"

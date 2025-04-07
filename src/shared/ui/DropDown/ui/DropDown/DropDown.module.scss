@@ -1,0 +1,43 @@
+.wrapper {
+	position: relative;
+
+	.button {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+
+		padding: 10px 22px;
+
+		border: 2px solid var(--at-color-gray-800);
+		border-radius: 5px;
+
+		color: inherit;
+		background-color: var(--at-color-gray-950);
+
+		font-size: 16px;
+	}
+
+	.menu {
+		display: none;
+
+		z-index: 99;
+		position: absolute;
+		transform: translateY(var(--dd-top-offset));
+		left: 0;
+
+		// min-width: 160px;
+		padding: 0.45rem;
+
+		list-style: none;
+
+		border-radius: 5px;
+		border: 2px solid var(--at-color-gray-800);
+
+		background-color: var(--at-color-gray-950);
+		color: inherit;
+	}
+
+	.menu.opened {
+		display: block;
+	}
+}

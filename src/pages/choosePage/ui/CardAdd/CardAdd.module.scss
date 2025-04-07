@@ -1,0 +1,59 @@
+.cardWrapper {
+	cursor: pointer;
+
+	width: var(--at-ui-card-width);
+	height: var(--at-ui-card-height);
+
+	padding: var(--at-ui-card-padding);
+
+	background: var(--at-ui-card-background);
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	//TODO: Gap Value To Variable
+	gap: 1rem;
+
+	border-radius: 10px;
+
+	.cardPoster {
+		--card-poster-width: 10rem;
+
+		flex-grow: 1;
+
+		border: 2px solid var(--at-color-black-100);
+
+		width: var(--card-poster-width);
+		height: auto;
+
+		border-radius: 50%;
+
+		img {
+			border-radius: 50%;
+		}
+	}
+
+	.cardTitle {
+		text-align: center;
+	}
+
+	&.add {
+		border: 2px dashed var(--at-color-black-100);
+
+		background: transparent;
+
+		justify-content: center;
+
+		.cardPoster {
+			border-style: dashed;
+		}
+
+		transition: background 300ms ease-out;
+		&:hover {
+			background: var(--at-color-black-600);
+
+			transition: background 300ms ease-in;
+		}
+	}
+}
