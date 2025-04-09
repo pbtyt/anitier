@@ -1,3 +1,6 @@
+'use client';
+
+import { CardStatusType, CardTypeType } from '@/entities/card';
 import { Button } from '@/shared/ui/Button';
 import { DropDown } from '@/shared/ui/DropDown';
 import { Input } from '@/shared/ui/Input';
@@ -11,7 +14,19 @@ interface IAddCardStep {
 }
 
 export function AddCardStep({ setNewStep }: IAddCardStep) {
-	const { title, setTitle } = useAddNewCardContext();
+	const { title, setTitle, setCardType, setCardStatus } =
+		useAddNewCardContext();
+
+	const onTypeSelect = (ddId: string, preview: string, data: CardTypeType) => {
+		setCardType(data);
+	};
+	const onStatusSelect = (
+		ddId: string,
+		preview: string,
+		data: CardStatusType
+	) => {
+		setCardStatus(data);
+	};
 
 	const isNextStepDisabled = title.trim().length === 0;
 	const handleNextStepClick = useCallback(() => {
@@ -41,10 +56,11 @@ export function AddCardStep({ setNewStep }: IAddCardStep) {
 						console.log(e.target.value);
 					}}
 				/>
-				<Input
+				{/*TODO: <Input
 					placeholder='Название на английском'
 					value={title}
 					onChange={e => {
+						//TODO: need add debounce 
 						setTitle(e.target.value);
 						console.log(e.target.value);
 					}}
@@ -56,21 +72,57 @@ export function AddCardStep({ setNewStep }: IAddCardStep) {
 						setTitle(e.target.value);
 						console.log(e.target.value);
 					}}
-				/>
+				/> */}
 
 				<h4 className={styles.sectionSubTitle}>Сведения</h4>
 
 				<div className={styles.metadataWrapper}>
 					{/* Тип */}
-					<DropDown initialPreview='TV' menuTopOffset={5}>
-						<DropDown.Item ddId='ddid-tv'>TV</DropDown.Item>
-						<DropDown.Item ddId='ddid-film'>Фильм</DropDown.Item>
+					<DropDown<CardTypeType>
+						initialPreview='TV'
+						initialData={'TV'}
+						onSelect={onTypeSelect}
+						menuTopOffset={5}
+					>
+						<DropDown.Item<CardTypeType>
+							preview='TV'
+							data={'TV'}
+							ddId='ddid-tv'
+						>
+							TV
+						</DropDown.Item>
+						<DropDown.Item<CardTypeType>
+							preview='Фильм'
+							data={'FILM'}
+							ddId='ddid-film'
+						>
+							Фильм
+						</DropDown.Item>
 					</DropDown>
+
 					{/* Статус тайтла */}
-					<DropDown initialPreview='Онгоинг'>
-						<DropDown.Item ddId='ddid-ongoing'>Онгоинг</DropDown.Item>
-						<DropDown.Item ddId='ddid-complete'>Завершен</DropDown.Item>
+					<DropDown<CardStatusType>
+						initialPreview='Онгоинг'
+						initialData={'ONGOING'}
+						onSelect={onStatusSelect}
+						menuTopOffset={5}
+					>
+						<DropDown.Item<CardStatusType>
+							preview='Онгоинг'
+							data={'ONGOING'}
+							ddId='ddid-ongoing'
+						>
+							Онгоинг
+						</DropDown.Item>
+						<DropDown.Item<CardStatusType>
+							preview='Завершен'
+							data={'FINISHED'}
+							ddId='ddid-complete'
+						>
+							Завершен
+						</DropDown.Item>
 					</DropDown>
+
 					{/* Год Релиза */}
 				</div>
 			</section>

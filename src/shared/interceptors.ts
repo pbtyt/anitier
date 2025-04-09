@@ -1,7 +1,10 @@
 import { baseBackendURL } from '@/shared/constants/back.constants';
 import axios, { CreateAxiosDefaults } from 'axios';
-import { authService } from '../services/auth.service';
-import { getAccessToken, removeFromStorage } from '../services/token.service';
+import { authService } from '../entities/auth/services/auth.service';
+import {
+	getAccessToken,
+	removeFromStorage,
+} from '../entities/auth/services/token.service';
 import { errorCatch } from './error';
 
 const options: CreateAxiosDefaults = {

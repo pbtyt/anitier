@@ -3,18 +3,24 @@ import { PropsWithChildren, useCallback } from 'react';
 import { useDropDownContext } from '../DropDownProvider/DropDownProvider';
 import styles from './DropDownItem.module.scss';
 
-export interface IDropDownItemProps {
+export interface IDropDownItemProps<T> {
 	ddId: string;
+	data: T;
+	preview: string;
 }
 
-export function DropDownItem({
+export function DropDownItem<T>({
 	ddId,
+	data,
+	preview,
 	children,
-}: PropsWithChildren<IDropDownItemProps>) {
-	const { selectedID, setSelectedID, setPreview } = useDropDownContext();
+}: PropsWithChildren<IDropDownItemProps<T>>) {
+	const { selectedID, setSelectedID, setPreview, setData } =
+		useDropDownContext<T>();
 	const handleOnDDItemClick = useCallback(() => {
 		setSelectedID(ddId);
-		setPreview(ddId);
+		setPreview(preview);
+		setData(data);
 	}, []);
 
 	return (

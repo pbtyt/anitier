@@ -1,14 +1,14 @@
-import {
-	createContext,
-	Dispatch,
-	SetStateAction,
-	useContext,
-	useState,
-} from 'react';
+import { CardStatusType, CardTypeType } from '@/entities/card';
+import { SetStateType } from '@/shared/utils/utilTypes';
+import { createContext, useContext, useMemo, useState } from 'react';
 
 type AddNewCardContextType = {
 	title: string;
-	setTitle: Dispatch<SetStateAction<string>>;
+	setTitle: SetStateType<string>;
+	cardStatus: CardStatusType;
+	setCardStatus: SetStateType<CardStatusType>;
+	cardType: CardTypeType;
+	setCardType: SetStateType<CardTypeType>;
 };
 
 export const AddNewCardContext = createContext<
@@ -28,8 +28,23 @@ export const AddNewCardProvider = ({
 	children: React.ReactNode;
 }) => {
 	const [title, setTitle] = useState<string>('');
+	const [cardStatus, setCardStatus] = useState<CardStatusType>('ONGOING');
+	const [cardType, setCardType] = useState<CardTypeType>('TV');
+
+	const value = useMemo(
+		() => ({
+			title,
+			setTitle,
+			cardStatus,
+			setCardStatus,
+			cardType,
+			setCardType,
+		}),
+		[title, cardStatus, cardType]
+	);
+
 	return (
-		<AddNewCardContext.Provider value={{ title, setTitle }}>
+		<AddNewCardContext.Provider value={value}>
 			{children}
 		</AddNewCardContext.Provider>
 	);

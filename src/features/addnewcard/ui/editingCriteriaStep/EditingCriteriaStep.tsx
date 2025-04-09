@@ -4,6 +4,13 @@ import { CriteriaList } from './criteriaList/CriteriaList';
 import { EditingCriteriaProvider } from './editingCriteriaContext/EditingCriteriaContext';
 
 export const EditingCriteriaStep = () => {
+	// const { title, cardStatus, cardType } = useAddNewCardContext();
+
+	// useEffect(() => {
+	// 	console.log(title);
+	// 	console.log(cardStatus);
+	// 	console.log(cardType);
+	// }, []);
 	return (
 		<EditingCriteriaProvider>
 			<section className={styles.section}>

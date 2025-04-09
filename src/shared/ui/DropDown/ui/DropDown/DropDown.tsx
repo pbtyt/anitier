@@ -1,6 +1,9 @@
+'use client';
+
+import { useEffectAfterMount } from '@/shared/hooks/useEffectAfterMount';
 import { useOutside } from '@/shared/hooks/useOutside';
 import clsx from 'clsx';
-import { CSSProperties, PropsWithChildren } from 'react';
+import { CSSProperties, PropsWithChildren, useEffect } from 'react';
 import { DropDownItem } from '../DropDownItem/DropDownItem';
 import {
 	DropDownProvider,
@@ -23,24 +26,44 @@ import styles from './DropDown.module.scss';
 	*/
 }
 
-interface IDropDownProps {
+interface IDropDownProps<T> {
 	initialPreview: string;
+	initialData: T;
 	menuTopOffset?: number;
+	//TODO: Maybe onSelect Func Need Only Data Param?
+	onSelect?: (ddiD: string, preview: string, data: T) => void;
 	className?: string;
 }
 
-function DropDownContent({
+function DropDownContent<T>({
 	initialPreview,
+	initialData,
 	menuTopOffset,
+
+	onSelect,
 	className,
 	children,
-}: PropsWithChildren<IDropDownProps>) {
-	const { preview } = useDropDownContext();
+}: PropsWithChildren<IDropDownProps<T>>) {
+	const {
+		selectedID,
+		preview,
+		data: dropDownItemData,
+		setData,
+	} = useDropDownContext<T>();
 	const { isShow, ref, setIsShow } = useOutside(false);
 
 	const menuSettings = {
 		'--dd-top-offset': `${menuTopOffset ?? 0}px`,
 	} as CSSProperties;
+
+	useEffect(() => {
+		//TODO: ???? AHAHHAHAHAHAHH
+		setData(initialData);
+	}, []);
+
+	useEffectAfterMount(() => {
+		onSelect?.(selectedID, preview, dropDownItemData);
+	}, [selectedID]);
 
 	return (
 		<div
@@ -60,17 +83,21 @@ function DropDownContent({
 }
 
 //NOTE: DO NOT MODIFY THIS
-export function DropDown({
+export function DropDown<T>({
 	initialPreview,
+	initialData,
 	menuTopOffset,
+	onSelect,
 	className,
 	children,
-}: PropsWithChildren<IDropDownProps>) {
+}: PropsWithChildren<IDropDownProps<T>>) {
 	return (
-		<DropDownProvider>
-			<DropDownContent
+		<DropDownProvider<T>>
+			<DropDownContent<T>
 				initialPreview={initialPreview}
+				initialData={initialData}
 				menuTopOffset={menuTopOffset}
+				onSelect={onSelect}
 				className={className}
 			>
 				{children}
