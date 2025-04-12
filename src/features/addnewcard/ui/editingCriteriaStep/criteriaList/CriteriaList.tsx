@@ -1,7 +1,7 @@
 import { useCardStore } from '@/entities/card';
 import { Button } from '@/shared/ui/Button';
 import { Trash } from 'lucide-react';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useAddNewCardContext } from '../../addNewCardContext/AddNewCardContext';
 import { useEditingCriteriaContext } from '../editingCriteriaContext/EditingCriteriaContext';
 import styles from './CriteriaList.module.scss';
@@ -31,6 +31,10 @@ export function CriteriaList() {
 
 		// DEBUG ONLY
 		// removeAll();
+	}, [criteria]);
+
+	useEffect(() => {
+		console.log(criteria);
 	}, [criteria]);
 
 	return (

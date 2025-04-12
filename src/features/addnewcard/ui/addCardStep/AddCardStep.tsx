@@ -1,7 +1,6 @@
 'use client';
 
 import { CardStatusType, CardTypeType } from '@/entities/card';
-import { UploadImage } from '@/features/uploadImage';
 import { Button } from '@/shared/ui/Button';
 import { DropDown } from '@/shared/ui/DropDown';
 import { Input } from '@/shared/ui/Input';
@@ -45,10 +44,6 @@ export const AddCardStep = memo(function AddCardStep({
 		<>
 			<section className={styles.section}>
 				<h3 className={styles.sectionTitle}>Информация о тайтле</h3>
-
-				<h4 className={styles.sectionSubTitle}>Обложка</h4>
-
-				<UploadImage />
 
 				<h4 className={styles.sectionSubTitle}>Название</h4>
 				<Input

@@ -47,6 +47,7 @@ export const EditingCriteriaStep = () => {
 							episodesNumber: 23,
 							status: cardStatus,
 							type: cardType,
+							criteria: [{ title: 'ad', weight: 2 }],
 						})
 					}
 				/>

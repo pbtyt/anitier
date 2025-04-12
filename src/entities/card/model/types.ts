@@ -10,8 +10,8 @@ export type CardType = {
 
 export type CriteriaType = {
 	id: number;
-	weight: number;
 	title: string;
+	weight: number;
 };
 
 export interface ICardResponse {
@@ -21,10 +21,12 @@ export interface ICardResponse {
 	updatedAt?: string;
 
 	title: string;
-	poster?: string;
+	posterSrc?: string;
 	status?: CardStatusType;
 	type?: CardTypeType;
 	episodesNumber: number;
+
+	criteria?: Omit<CriteriaType, 'id'>[];
 }
 
 const Type = {

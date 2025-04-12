@@ -11,17 +11,25 @@ class CardService {
 	}
 
 	async createCard(data: CardFormStateType) {
-		const response = await axiosWithAuth.post(this.BASE_ROOT, data);
+		const response = await axiosWithAuth.post<ICardResponse>(
+			this.BASE_ROOT,
+			data
+		);
 		return response;
 	}
 
 	async updateCard(id: string, data: CardFormStateType) {
-		const response = await axiosWithAuth.put(`${this.BASE_ROOT}/${id}`, data);
+		const response = await axiosWithAuth.put<ICardResponse>(
+			`${this.BASE_ROOT}/${id}`,
+			data
+		);
 		return response;
 	}
 
 	async deleteCard(id: string) {
-		const response = await axiosWithAuth.delete(`${this.BASE_ROOT}/${id}`);
+		const response = await axiosWithAuth.delete<ICardResponse>(
+			`${this.BASE_ROOT}/${id}`
+		);
 		return response;
 	}
 }
