@@ -1,4 +1,3 @@
-import { baseBackendURL } from '@/shared/constants/back.constants';
 import axios, { CreateAxiosDefaults } from 'axios';
 import { authService } from '../entities/auth/services/auth.service';
 import {
@@ -8,14 +7,23 @@ import {
 import { errorCatch } from './error';
 
 const options: CreateAxiosDefaults = {
-	baseURL: baseBackendURL,
+	baseURL: `${process.env.NEXT_PUBLIC_API_URL}/api`,
 	headers: {
 		'Content-Type': 'application/json',
 	},
 	withCredentials: true,
 };
 
+const uploadOptions: CreateAxiosDefaults = {
+	baseURL: `${process.env.NEXT_PUBLIC_API_URL}/api`,
+	headers: {
+		'Content-Type': 'multipart/form-data',
+	},
+	withCredentials: true,
+};
+
 const axiosClassic = axios.create(options);
+const axiosUpload = axios.create(uploadOptions);
 const axiosWithAuth = axios.create(options);
 
 axiosWithAuth.interceptors.request.use(config => {
@@ -51,4 +59,4 @@ axiosWithAuth.interceptors.response.use(
 	}
 );
 
-export { axiosClassic, axiosWithAuth };
+export { axiosClassic, axiosUpload, axiosWithAuth };

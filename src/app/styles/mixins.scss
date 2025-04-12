@@ -9,3 +9,13 @@
 		@content;
 	}
 }
+
+@mixin hide-text($line-count) {
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: $line-count;
+	line-clamp: $line-count;
+}

@@ -1,4 +1,4 @@
-import { ChoosePage } from '@/pages/choosePage';
+import { ChoosePage } from '@/_pages/choosePage';
 import { NO_INDEX_PAGE } from '@/shared/constants/seo.constants';
 import type { Metadata } from 'next';
 

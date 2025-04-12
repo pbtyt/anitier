@@ -11,7 +11,7 @@ interface ICardAddProps {
 export function CardAdd({ className }: ICardAddProps) {
 	return (
 		<Link
-			href={`${SITE_ROUTES_BASE.ADD_NEW_TITLE}?step=1`}
+			href={SITE_ROUTES_BASE.ADD_NEW_TITLE}
 			className={clsx(styles.cardWrapper, styles.add)}
 		>
 			<div style={{ flexGrow: '1', display: 'flex', alignItems: 'center' }}>

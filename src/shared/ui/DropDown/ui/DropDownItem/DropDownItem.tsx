@@ -17,6 +17,7 @@ export function DropDownItem<T>({
 }: PropsWithChildren<IDropDownItemProps<T>>) {
 	const { selectedID, setSelectedID, setPreview, setData } =
 		useDropDownContext<T>();
+
 	const handleOnDDItemClick = useCallback(() => {
 		setSelectedID(ddId);
 		setPreview(preview);

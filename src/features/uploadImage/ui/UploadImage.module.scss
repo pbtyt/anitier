@@ -1,0 +1,21 @@
+.posterLoaderWrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.35rem;
+
+	border-radius: 5px;
+	border: 2px dashed var(--at-color-gray-200);
+	color: var(--at-color-gray-200);
+
+	padding: 1rem;
+
+	width: 150px;
+	height: 150px;
+
+	font-size: 15px;
+	text-align: center;
+
+	cursor: pointer;
+}

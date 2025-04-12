@@ -1,11 +1,11 @@
 'use client';
 
 import { CardStatusType, CardTypeType } from '@/entities/card';
+import { UploadImage } from '@/features/uploadImage';
 import { Button } from '@/shared/ui/Button';
 import { DropDown } from '@/shared/ui/DropDown';
 import { Input } from '@/shared/ui/Input';
-import { ImageUp } from 'lucide-react';
-import { Dispatch, SetStateAction, useCallback } from 'react';
+import { Dispatch, memo, SetStateAction, useCallback } from 'react';
 import styles from '../AddNewCard.module.scss';
 import { useAddNewCardContext } from '../addNewCardContext/AddNewCardContext';
 
@@ -13,12 +13,16 @@ interface IAddCardStep {
 	setNewStep: Dispatch<SetStateAction<number>>;
 }
 
-export function AddCardStep({ setNewStep }: IAddCardStep) {
+export const AddCardStep = memo(function AddCardStep({
+	setNewStep,
+}: IAddCardStep) {
 	const { title, setTitle, setCardType, setCardStatus } =
 		useAddNewCardContext();
 
 	const onTypeSelect = (ddId: string, preview: string, data: CardTypeType) => {
 		setCardType(data);
+
+		console.log(`Card Type Update: ${data}`);
 	};
 	const onStatusSelect = (
 		ddId: string,
@@ -26,6 +30,8 @@ export function AddCardStep({ setNewStep }: IAddCardStep) {
 		data: CardStatusType
 	) => {
 		setCardStatus(data);
+
+		console.log(`Card Status Update: ${data}`);
 	};
 
 	const isNextStepDisabled = title.trim().length === 0;
@@ -41,11 +47,8 @@ export function AddCardStep({ setNewStep }: IAddCardStep) {
 				<h3 className={styles.sectionTitle}>Информация о тайтле</h3>
 
 				<h4 className={styles.sectionSubTitle}>Обложка</h4>
-				<div className={styles.posterLoaderWrapper}>
-					<input accept='image/*' type='file' hidden />
-					<ImageUp size={48} strokeWidth={1} />
-					<span>Нажмите или перетащите изображение</span>
-				</div>
+
+				<UploadImage />
 
 				<h4 className={styles.sectionSubTitle}>Название</h4>
 				<Input
@@ -138,4 +141,4 @@ export function AddCardStep({ setNewStep }: IAddCardStep) {
 			</div>
 		</>
 	);
-}
+});

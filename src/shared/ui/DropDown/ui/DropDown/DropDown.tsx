@@ -11,21 +11,6 @@ import {
 } from '../DropDownProvider/DropDownProvider';
 import styles from './DropDown.module.scss';
 
-{
-	/* 
-	{Children.map(children, (child, index) => {
-		const item = child as ReactElement<
-			PropsWithChildren<IDropDownItemProps>
-		>;
-		if (item.type === DropDownItem) {
-			return cloneElement(item, { ...item.props, ddId: index });
-		}
-
-		return child;
-	})}
-	*/
-}
-
 interface IDropDownProps<T> {
 	initialPreview: string;
 	initialData: T;
@@ -57,13 +42,14 @@ function DropDownContent<T>({
 	} as CSSProperties;
 
 	useEffect(() => {
-		//TODO: ???? AHAHHAHAHAHAHH
 		setData(initialData);
-	}, []);
+		//TODO: addInitialSelectedId????
+		onSelect?.(selectedID, initialPreview, initialData);
+	}, []); // First Component Mount
 
 	useEffectAfterMount(() => {
 		onSelect?.(selectedID, preview, dropDownItemData);
-	}, [selectedID]);
+	}, [selectedID, dropDownItemData]); // Other Component Updates
 
 	return (
 		<div
