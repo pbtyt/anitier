@@ -7,7 +7,7 @@ import styles from './CardSelection.module.scss';
 
 export function CardSelection() {
 	const { items } = useCards();
-
+	console.log(items);
 	return (
 		<section className={styles.cardsContainer}>
 			{items?.map(card => (

@@ -1,8 +1,7 @@
-import { CriteriaType } from '@/entities/card';
+import { CriteriaType, EpisodeRatingType } from '@/entities/card';
 
-type CriteriaRatingType = { criteriaId: string; rating: number };
 export const calculateInterest = (
-	criteriaRating: CriteriaRatingType[],
+	criteriaRating: EpisodeRatingType[],
 	criteria: CriteriaType[]
 ) => {
 	const totalWeight = criteria.reduce((acc, c) => acc + c.weight, 0);

@@ -1,12 +1,16 @@
 import { axiosWithAuth } from '@/shared/interceptors';
-import { EpisodeFormStateType, IEpisodeResponse } from '../model/types';
+import {
+	EpisodeFormStateType,
+	EpisodeUpdateType,
+	IEpisodeResponse,
+} from '../model/types';
 
 class EpisodesService {
 	private BASE_ROOT = '/card/episodes';
 
 	async getEpisodes(cardId: string) {
 		const response = await axiosWithAuth.get<IEpisodeResponse[]>(
-			`${this.BASE_ROOT}/${cardId}`
+			`${this.BASE_ROOT}/${cardId}/all`
 		);
 
 		return response;
@@ -20,7 +24,7 @@ class EpisodesService {
 		return response;
 	}
 
-	async updateEpisode(id: string, data: EpisodeFormStateType) {
+	async updateEpisode(id: string, data: EpisodeUpdateType) {
 		const response = await axiosWithAuth.put<IEpisodeResponse>(
 			`${this.BASE_ROOT}/${id}`,
 			data

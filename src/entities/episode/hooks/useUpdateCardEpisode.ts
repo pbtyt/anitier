@@ -1,18 +1,25 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { EpisodeFormStateType } from '../model/types';
+import { EpisodeUpdateType } from '../model/types';
 import { episodesService } from '../service/episode.service';
 
-export function useUpdateCardEpisode(key?: string) {
+export function useUpdateCardEpisode({
+	key,
+	onSuccess,
+}: {
+	key?: string;
+	onSuccess?: () => void;
+}) {
 	const queryClient = useQueryClient();
 
 	const { mutate: updateCardEpisode } = useMutation({
 		mutationKey: ['update episode', key],
-		mutationFn: ({ id, data }: { id: string; data: EpisodeFormStateType }) =>
+		mutationFn: ({ id, data }: { id: string; data: EpisodeUpdateType }) =>
 			episodesService.updateEpisode(id, data),
 		onSuccess() {
 			queryClient.invalidateQueries({
-				queryKey: ['episodes'],
+				queryKey: ['episodes', 'card'],
 			});
+			onSuccess?.();
 		},
 	});
 

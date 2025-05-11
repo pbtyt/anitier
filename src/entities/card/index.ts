@@ -3,6 +3,7 @@ export type {
 	CardStatusType,
 	CardTypeType,
 	CriteriaType,
+	EpisodeRatingType,
 	ICardResponse,
 } from './model/types';
 export { useCardStore } from './store/card.store';

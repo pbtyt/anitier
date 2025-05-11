@@ -23,12 +23,22 @@ export function CardPage() {
 	const { showModal } = useModal();
 	const handleEpisodeClick = useCallback(
 		(id: string) => {
-			showModal(<EpisodeModal id={id} criteria={card?.criteria} />);
+			showModal(
+				//TODO:!!!!!! FIX ON SAVE CLICK NOT UPDATE STATE
+				<EpisodeModal
+					id={id}
+					criteria={card?.criteria}
+					episodeRating={card?.episodes
+						?.find(e => e.id === id)
+						?.episodeRating?.map(({ rating, criteriaId }) => ({
+							rating,
+							criteriaId,
+						}))}
+				/>
+			);
 		},
 		[card?.criteria]
 	);
-
-	console.log(card?.criteria);
 
 	return (
 		<main className={styles.wrapper}>

@@ -14,6 +14,13 @@ export type CriteriaType = {
 	weight: number;
 };
 
+export type EpisodeRatingType = { rating: number; criteriaId: string };
+export type EpisodeType = {
+	id: string;
+	title: string;
+	episodeRating: EpisodeRatingType[];
+};
+
 export interface ICardResponse {
 	id: string;
 
@@ -27,6 +34,7 @@ export interface ICardResponse {
 	episodesNumber: number;
 
 	criteria?: CriteriaType[];
+	episodes?: EpisodeType[];
 }
 
 const Type = {

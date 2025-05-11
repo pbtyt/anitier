@@ -9,3 +9,9 @@ export interface IEpisodeResponse {
 export type EpisodeFormStateType = Partial<
 	Omit<IEpisodeResponse, 'id' | 'updatedAt' | 'createdAt'>
 >;
+
+type EpisodeRatingType = { criteriaId: string; rating: number };
+export type EpisodeUpdateType = EpisodeFormStateType &
+	Partial<{
+		ratings: Partial<EpisodeRatingType[]>;
+	}>;
