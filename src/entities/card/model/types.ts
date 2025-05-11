@@ -3,13 +3,13 @@ import { TypeFrom } from '@/shared/utils/utilTypes';
 export type CardType = {
 	id: number;
 	title: string;
-	posterSrc?: string;
+	posterUrl?: string;
 
 	criteria: CriteriaType[];
 };
 
 export type CriteriaType = {
-	id: number;
+	id: string;
 	title: string;
 	weight: number;
 };
@@ -21,12 +21,12 @@ export interface ICardResponse {
 	updatedAt?: string;
 
 	title: string;
-	posterSrc?: string;
+	posterUrl?: string;
 	status?: CardStatusType;
 	type?: CardTypeType;
 	episodesNumber: number;
 
-	criteria?: Omit<CriteriaType, 'id'>[];
+	criteria?: CriteriaType[];
 }
 
 const Type = {

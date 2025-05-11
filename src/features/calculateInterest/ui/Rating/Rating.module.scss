@@ -1,0 +1,25 @@
+.criteriaSelectRating {
+	display: flex;
+	align-items: center;
+	gap: 7px;
+
+	.controlButton {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		.ratingButton {
+			color: var(--at-color-gray-300);
+		}
+	}
+
+	.starsWrapper {
+		margin-top: 5px;
+
+		display: flex;
+		align-items: center;
+		gap: 2px;
+
+		color: var(--at-color-gray-300);
+	}
+}

@@ -1,0 +1,35 @@
+.tabs {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+	.tab {
+		padding: 12px 0;
+		position: relative;
+		cursor: pointer;
+
+		.tabText {
+			font-size: 16px;
+			line-height: 24px;
+			color: var(--at-color-gray-200);
+			font-weight: 500;
+
+			&.active {
+				color: var(--at-ui-colors-text-primary);
+
+				&::after {
+					content: '';
+					display: block;
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					width: 100%;
+					height: 3px;
+					border-radius: 3px 3px 0 0;
+					background-color: var(--at-color-green-primary);
+				}
+			}
+		}
+	}
+}

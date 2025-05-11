@@ -1,3 +1,5 @@
+@use '@styles/helpers.scss' as h;
+
 .modalOverlay {
 	position: fixed;
 	top: 0;
@@ -9,7 +11,7 @@
 	width: 100%;
 	height: 100%;
 
-	background: none;
+	background: h.hex-w-alpha(var(--at-color-black-900), 0.75);
 
 	display: flex;
 }

@@ -1,29 +1,45 @@
+'use client';
+
+import { SITE_ROUTES_BASE } from '@/shared/config/page-url.config';
 import { Image } from '@/shared/ui/Image';
 import clsx from 'clsx';
+import { Trash2 } from 'lucide-react';
 import Link from 'next/link';
+import { useCallback } from 'react';
+import { useDeleteCard } from '../hooks/useDeleteCard';
+import { ICardResponse } from '../model/types';
 import styles from './Card.module.scss';
 
 interface ICardProps {
-	posterSrc?: string;
-	title?: string;
-
-	href: string;
+	cardData: Required<Pick<ICardResponse, 'title' | 'posterUrl' | 'id'>>;
 	className?: string;
 }
 
-export function Card({
-	posterSrc = '/placeholders/poster_placeholder.jpg',
-	title = 'Solo Levelling',
-	href,
-	className,
-}: ICardProps) {
-	return (
-		<Link href={href} className={clsx(styles.cardWrapper, className)}>
-			<div style={{ flexGrow: '1', display: 'flex', alignItems: 'center' }}>
-				<Image src={posterSrc} className={styles.cardPoster} />
-			</div>
+export function Card({ cardData, className }: ICardProps) {
+	const { deleteCard } = useDeleteCard();
 
-			<h2 className={styles.cardTitle}>{title}</h2>
-		</Link>
+	const handleOnDelete = useCallback(() => {
+		deleteCard(cardData.id);
+	}, []);
+
+	return (
+		<div className={styles.cardWrapper}>
+			<Link
+				href={`${SITE_ROUTES_BASE.CARD}/${cardData.id}`}
+				className={clsx(styles.card, className)}
+			>
+				<div style={{ flexGrow: '1', display: 'flex', alignItems: 'center' }}>
+					<Image
+						src={`${process.env.NEXT_PUBLIC_API_UPLOADS_URL}${cardData.posterUrl}`}
+						className={styles.cardPoster}
+					/>
+				</div>
+
+				<h2 className={styles.cardTitle}>{cardData.title}</h2>
+			</Link>
+			<button className={styles.trashButton} onClick={handleOnDelete}>
+				<Trash2 size={30} />
+			</button>
+		</div>
 	);
 }

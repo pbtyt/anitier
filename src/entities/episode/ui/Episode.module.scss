@@ -1,0 +1,39 @@
+@use '@styles/helpers.scss' as h;
+
+.wrapper {
+	width: 500px;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	.info {
+		display: flex;
+		flex-direction: column;
+		.number {
+			color: var(--at-ui-colors-text-primary);
+			font-size: 17px;
+			line-height: 22px;
+			font-weight: 600;
+		}
+
+		.title {
+			font-weight: 500;
+			color: var(--at-color-gray-300);
+			font-size: 15px;
+		}
+	}
+
+	.moreButton {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		padding: 0.35rem;
+
+		color: var(--at-color-gray-100);
+
+		background: h.hex-w-alpha(var(--at-color-gray-900), 0.25);
+		border-radius: 10px;
+	}
+}

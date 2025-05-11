@@ -1,27 +1,39 @@
-import { useCreateCard } from '@/entities/card';
+import { useCreateCard } from '@/entities/card/hooks/useCreateCard';
 import { Button } from '@/shared/ui/Button';
-import { useEffect } from 'react';
 import styles from '../AddNewCard.module.scss';
 import { useAddNewCardContext } from '../addNewCardContext/AddNewCardContext';
 import { CriteriaForm } from './criteriaForm/CriteriaForm';
 import { CriteriaList } from './criteriaList/CriteriaList';
-import { EditingCriteriaProvider } from './editingCriteriaContext/EditingCriteriaContext';
+import {
+	EditingCriteriaProvider,
+	useEditingCriteriaContext,
+} from './editingCriteriaContext/EditingCriteriaContext';
+
+const AddNewCard = () => {
+	const { title, cardStatus, cardType } = useAddNewCardContext();
+	const { criteria } = useEditingCriteriaContext();
+	const { createCard } = useCreateCard();
+	return (
+		<div className={styles.buttonsWrapper}>
+			<Button
+				buttonText='Добавить'
+				buttonColor='primary'
+				className={styles.button}
+				onClick={() =>
+					createCard({
+						title: title,
+						episodesNumber: 23,
+						status: cardStatus,
+						type: cardType,
+						criteria: criteria,
+					})
+				}
+			/>
+		</div>
+	);
+};
 
 export const EditingCriteriaStep = () => {
-	const { title, cardStatus, cardType } = useAddNewCardContext();
-
-	const { createCard } = useCreateCard();
-
-	useEffect(() => {
-		console.log(title);
-		console.log(cardStatus);
-		console.log(cardType);
-
-		return () => {
-			console.log('Unmounted');
-		};
-	}, []);
-
 	return (
 		<EditingCriteriaProvider>
 			<section className={styles.section}>
@@ -36,22 +48,7 @@ export const EditingCriteriaStep = () => {
 				<EditingCriteriaStep.CriteriaList />
 			</section>
 
-			<div className={styles.buttonsWrapper}>
-				<Button
-					buttonText='Добавить'
-					buttonColor='primary'
-					className={styles.button}
-					onClick={() =>
-						createCard({
-							title: title,
-							episodesNumber: 23,
-							status: cardStatus,
-							type: cardType,
-							criteria: [{ title: 'ad', weight: 2 }],
-						})
-					}
-				/>
-			</div>
+			<AddNewCard />
 		</EditingCriteriaProvider>
 	);
 };

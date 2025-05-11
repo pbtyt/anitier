@@ -4,6 +4,14 @@ import { CardFormStateType, ICardResponse } from '../model/types';
 class CardService {
 	private BASE_ROOT = '/card';
 
+	async getCardById(id: string) {
+		const response = await axiosWithAuth.get<ICardResponse>(
+			`${this.BASE_ROOT}/${id}`
+		);
+
+		return response;
+	}
+
 	async getCards() {
 		const response = await axiosWithAuth.get<ICardResponse[]>(this.BASE_ROOT);
 

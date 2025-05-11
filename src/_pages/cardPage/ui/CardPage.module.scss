@@ -1,0 +1,89 @@
+.wrapper {
+	// to mixin??
+	min-width: 1280px;
+	max-width: 1280px;
+	align-self: center;
+
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+
+	margin: 2.5rem auto 1rem auto;
+	//
+
+	.titleInfo {
+		display: flex;
+		align-items: flex-start;
+		gap: 1.5rem;
+
+		.left {
+			.titleNoPoster {
+				width: 200px;
+				height: auto;
+				aspect-ratio: 3 / 4;
+			}
+
+			.titlePoster {
+				width: 200px;
+
+				img {
+					border-radius: 8px;
+
+					// aspect-ratio: 1 / 1.4;
+					aspect-ratio: 3 / 4;
+					object-fit: cover;
+				}
+			}
+		}
+
+		.right {
+			width: 50%;
+
+			display: flex;
+			flex-direction: column;
+			gap: 0.25rem;
+
+			.episodesNumber {
+				color: var(--at-ui-colors-primary);
+			}
+
+			.metadataWrapper {
+				.metadataInfo {
+					width: 100%;
+
+					padding: 0.95rem 0;
+
+					border-bottom: 1px solid var(--at-color-black-300);
+
+					display: flex;
+					align-items: center;
+
+					.title,
+					.value,
+					.valueWrapper {
+						color: var(--at-color-white-500);
+
+						font-size: calc(var(--at-ui-text-fs-standard-desktop) * 0.9);
+					}
+
+					.title {
+						width: 200px;
+					}
+
+					.value,
+					.valueWrapper {
+					}
+				}
+			}
+		}
+	}
+
+	.aboutTitle {
+		.episodesList {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+			margin-top: 1.35rem;
+		}
+	}
+}

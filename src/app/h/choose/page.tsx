@@ -8,6 +8,6 @@ export const metadata: Metadata = {
 };
 
 // CHOOSE MENU
-export default function ChosePage() {
+export default function ChoosePageRoute() {
 	return <ChoosePage />;
 }

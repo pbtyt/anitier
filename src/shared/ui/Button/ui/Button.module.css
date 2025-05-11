@@ -20,7 +20,7 @@
 }
 
 .button.primary {
-	background: var(--at-color-green-600);
+	background: var(--at-ui-colors-primary);
 }
 
 .button.dark {
@@ -37,5 +37,5 @@
 
 .button:disabled {
 	opacity: 0.5;
-	cursor: auto;
+	cursor: not-allowed;
 }

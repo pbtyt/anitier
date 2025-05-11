@@ -24,7 +24,7 @@ export const useCardStore = create<ICardStore>()(
 							{
 								id: newID,
 								title: newCard.title,
-								posterSrc: newCard.posterSrc,
+								posterUrl: newCard.posterUrl,
 								criteria: newCard.criteria,
 							},
 						],

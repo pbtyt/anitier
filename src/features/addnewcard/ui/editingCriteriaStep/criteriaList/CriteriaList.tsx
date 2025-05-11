@@ -27,7 +27,7 @@ export function CriteriaList() {
 	const handleSaveClick = useCallback(() => {
 		if (isSaveDisable) return;
 
-		addCard({ criteria: criteria, title: title, posterSrc: '' });
+		addCard({ criteria: criteria, title: title, posterUrl: '' });
 
 		// DEBUG ONLY
 		// removeAll();

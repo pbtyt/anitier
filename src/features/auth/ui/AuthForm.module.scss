@@ -1,0 +1,48 @@
+@use '@styles/helpers.scss' as h;
+
+.wrapper {
+	height: 100%;
+
+	padding: 5rem;
+
+	display: grid;
+	align-items: center;
+	grid-template-columns: 1fr 1fr;
+
+	.form {
+		grid-column: 2;
+
+		display: flex;
+		flex-direction: column;
+		gap: 1.6rem;
+
+		.buttonsWrapper {
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+
+			button {
+				font-weight: 600;
+
+				justify-content: center;
+				flex-grow: 1;
+			}
+
+			.regForm:hover {
+				background: var(--at-color-white-800);
+				color: var(--at-ui-colors-background);
+
+				transition: all 300ms ease-in;
+			}
+
+			.regForm {
+				transition: all 300ms ease-in;
+			}
+
+			button:not(.regForm) {
+				background: h.hex-w-alpha(var(--at-color-white-800), 0.85);
+				color: var(--at-ui-colors-background);
+			}
+		}
+	}
+}

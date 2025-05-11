@@ -35,6 +35,7 @@ export default function RootLayout({
 			<body id='body' className={zen.className} style={{}}>
 				<Providers>
 					{children}
+					<div id='modal-root'></div>
 					<Modals />
 				</Providers>
 			</body>

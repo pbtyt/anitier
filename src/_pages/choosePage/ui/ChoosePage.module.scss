@@ -5,15 +5,4 @@
 	justify-content: center;
 
 	height: 100%;
-
-	//Move To Another File
-	.cardsContainer {
-		display: flex;
-		align-items: center;
-		gap: 2rem;
-
-		.card:nth-child(2n + 1) {
-			transform: scale(0.9);
-		}
-	}
 }

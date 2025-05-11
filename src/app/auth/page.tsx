@@ -1,4 +1,4 @@
-import { AuthForm } from '@/features/auth';
+import { AuthPage } from '@/_pages/authPage';
 import { NO_INDEX_PAGE } from '@/shared/constants/seo.constants';
 import type { Metadata } from 'next';
 
@@ -8,6 +8,6 @@ export const metadata: Metadata = {
 };
 
 // AUTH
-export default function AuthPage() {
-	return <AuthForm />;
+export default function AuthPageRoute() {
+	return <AuthPage />;
 }

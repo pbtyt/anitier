@@ -1,8 +1,12 @@
 'use client';
+import clsx from 'clsx';
 import { ImageUp } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useUploadImage } from '../hooks/useUploadImage';
+import {
+	type UploadImageParams,
+	useUploadImage,
+} from '../hooks/useUploadImage';
 import styles from './UploadImage.module.scss';
 
 type FormValues = {
@@ -10,7 +14,15 @@ type FormValues = {
 	description?: string;
 };
 
-export const UploadImage = () => {
+export const UploadImage = ({
+	entityData,
+	desc,
+	className,
+}: {
+	entityData: UploadImageParams;
+	desc?: string;
+	className?: string;
+}) => {
 	const {
 		register,
 		handleSubmit,
@@ -19,7 +31,7 @@ export const UploadImage = () => {
 		reset,
 	} = useForm<FormValues>();
 
-	const { mutate, isPending, isError, isSuccess } = useUploadImage();
+	const { mutate, isPending, isError, isSuccess } = useUploadImage(entityData);
 	const selectedFile = watch('image')?.[0];
 
 	const onSubmit = async (data: FormValues) => {
@@ -62,7 +74,7 @@ export const UploadImage = () => {
 		<>
 			<form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
 				<div
-					className={styles.posterLoaderWrapper}
+					className={clsx(styles.posterLoaderWrapper, className)}
 					onClick={handleDivClick}
 					role='button'
 				>
@@ -79,7 +91,7 @@ export const UploadImage = () => {
 					/>
 
 					<ImageUp size={48} strokeWidth={1} />
-					<span>Нажмите или перетащите изображение</span>
+					<span>{desc ? desc : 'Нажмите или перетащите изображение'}</span>
 				</div>
 
 				{/* {errors.image && (

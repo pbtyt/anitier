@@ -1,0 +1,9 @@
+.wrapper > *:not(:first-child):not(:last-child) {
+	padding: 10px 0;
+}
+.wrapper > *:first-child {
+	padding-bottom: 10px;
+}
+.wrapper > *:last-child {
+	padding-top: 10px;
+}

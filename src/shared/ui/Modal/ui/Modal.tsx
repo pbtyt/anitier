@@ -4,7 +4,7 @@ import { useModal } from '@/shared/hooks/useModal';
 import { useOutside } from '@/shared/hooks/useOutside';
 import clsx from 'clsx';
 import { CSSProperties, PropsWithChildren } from 'react';
-import styles from './Modal.module.css';
+import styles from './Modal.module.scss';
 
 interface ModalProps {
 	modalWidth: string;

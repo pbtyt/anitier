@@ -1,5 +1,12 @@
-import { axiosUpload } from '@/shared/interceptors';
-import { useMutation } from '@tanstack/react-query';
+import { axiosWithAuth } from '@/shared/interceptors';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+type EntityType = 'card' | 'user';
+
+export interface UploadImageParams {
+	entityId: string;
+	entity: EntityType;
+}
 
 type UploadResponse = {
 	id: number;
@@ -7,23 +14,30 @@ type UploadResponse = {
 	path: string;
 };
 
-export const useUploadImage = () => {
-	const entityId: string = '';
+export const useUploadImage = ({ entityId, entity }: UploadImageParams) => {
+	const url =
+		entity === 'user'
+			? `/user/profile/${entityId}/avatar`
+			: `/card/${entityId}/poster`;
+
+	const queryClient = useQueryClient();
+
 	return useMutation({
 		mutationFn: async (file: File) => {
 			const formData = new FormData();
 			formData.append('file', file);
 
-			const { data } = await axiosUpload.post<UploadResponse>(
-				`/user/profile/${entityId}/avatar`,
-				formData,
-				{
-					headers: {
-						'Content-Type': 'multipart/form-data',
-					},
-				}
-			);
+			const { data } = await axiosWithAuth.post<UploadResponse>(url, formData, {
+				headers: {
+					'Content-Type': 'multipart/form-data',
+				},
+			});
 			return data;
+		},
+		onSuccess() {
+			console.log('success');
+			console.log(entity, entityId);
+			queryClient.invalidateQueries({ queryKey: [entity, entityId] });
 		},
 	});
 };
