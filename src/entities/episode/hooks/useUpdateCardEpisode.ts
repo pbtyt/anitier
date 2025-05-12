@@ -17,8 +17,9 @@ export function useUpdateCardEpisode({
 			episodesService.updateEpisode(id, data),
 		onSuccess() {
 			queryClient.invalidateQueries({
-				queryKey: ['episodes', 'card'],
+				queryKey: ['episodes'],
 			});
+
 			onSuccess?.();
 		},
 	});

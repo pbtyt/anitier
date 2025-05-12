@@ -2,14 +2,19 @@
 
 import { useCard } from '@/entities/card/hooks/useCard';
 import { useCardEpisodes } from '@/entities/episode/hooks/useCardEpisodes';
+import { useCreateCardEpisode } from '@/entities/episode/hooks/useCreateCardEpisode';
+import { EpisodeFormStateType } from '@/entities/episode/model/types';
 import { Episode } from '@/entities/episode/ui/Episode';
 import { UploadImage } from '@/features/uploadImage';
 import { useModal } from '@/shared/hooks/useModal';
+import { Button } from '@/shared/ui/Button';
+import { Field } from '@/shared/ui/Field/ui/Field';
 import { Image } from '@/shared/ui/Image';
 import { UpTabs } from '@/shared/ui/Tabs';
 import { EpisodeModal } from '@/widgets/episodeModal';
 import { useParams } from 'next/navigation';
 import { useCallback } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from './CardPage.module.scss';
 
 //NOTE: WIP
@@ -24,11 +29,10 @@ export function CardPage() {
 	const handleEpisodeClick = useCallback(
 		(id: string) => {
 			showModal(
-				//TODO:!!!!!! FIX ON SAVE CLICK NOT UPDATE STATE
 				<EpisodeModal
 					id={id}
 					criteria={card?.criteria}
-					episodeRating={card?.episodes
+					episodeRating={episodes
 						?.find(e => e.id === id)
 						?.episodeRating?.map(({ rating, criteriaId }) => ({
 							rating,
@@ -37,8 +41,27 @@ export function CardPage() {
 				/>
 			);
 		},
-		[card?.criteria]
+		[card?.criteria, episodes]
 	);
+
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { isValid },
+	} = useForm<Pick<EpisodeFormStateType, 'title'>>({
+		mode: 'onChange',
+	});
+
+	const { createCardEpisode } = useCreateCardEpisode({
+		onSuccess() {
+			reset();
+		},
+	});
+
+	const onSubmit: SubmitHandler<Pick<EpisodeFormStateType, 'title'>> = data => {
+		createCardEpisode({ cardId: titleId, data: data });
+	};
 
 	return (
 		<main className={styles.wrapper}>
@@ -100,6 +123,17 @@ export function CardPage() {
 							key={ep.id}
 						/>
 					))}
+					<div>
+						<form onSubmit={handleSubmit(onSubmit)}>
+							<Field
+								id='episode-title'
+								placeholder='Enter Episode Name: '
+								label=''
+								{...register('title', { required: 'Title Is Required!!!' })}
+							/>
+							<Button buttonColor='primary' buttonText='Create' />
+						</form>
+					</div>
 				</div>
 			</section>
 		</main>

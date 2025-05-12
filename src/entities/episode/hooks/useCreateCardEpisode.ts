@@ -2,7 +2,11 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { EpisodeFormStateType } from '../model/types';
 import { episodesService } from '../service/episode.service';
 
-export function useCreateCardEpisode() {
+export function useCreateCardEpisode({
+	onSuccess,
+}: {
+	onSuccess?: () => void;
+}) {
 	const queryClient = useQueryClient();
 
 	const { mutate: createCardEpisode } = useMutation({
@@ -18,6 +22,8 @@ export function useCreateCardEpisode() {
 			queryClient.invalidateQueries({
 				queryKey: ['episodes'],
 			});
+
+			onSuccess?.();
 		},
 	});
 
