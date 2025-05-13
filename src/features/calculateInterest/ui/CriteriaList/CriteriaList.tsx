@@ -41,7 +41,7 @@ export function CriteriaList({
 					/>
 				))}
 			</div>
-			Interest: "{interest.toFixed(2)}"
+			Интерес серии: {interest.toFixed(2)} из 5
 		</>
 	);
 }

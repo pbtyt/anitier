@@ -1,43 +1,28 @@
 'use client';
 
-import { CriteriaType, EpisodeRatingType } from '@/entities/card';
-import { useUpdateCardEpisode } from '@/entities/episode/hooks/useUpdateCardEpisode';
-import { CriteriaList } from '@/features/calculateInterest/ui/CriteriaList/CriteriaList';
-import { useModal } from '@/shared/hooks/useModal';
+import { IEpisodeRatingResponse } from '@/entities/episode';
+import { CriteriaList } from '@/features/calculateInterest';
 import { Button } from '@/shared/ui/Button';
 import { Modal } from '@/shared/ui/Modal';
 import { X } from 'lucide-react';
-import { useCallback, useState } from 'react';
+import { useEpisodeModal } from '../hooks/useEpisodeModal';
 import styles from './EpisodeModal.module.scss';
 
 export function EpisodeModal({
 	id,
-	criteria,
-	episodeRating,
+	episodeRatingData,
 }: {
 	id: string;
-	criteria?: CriteriaType[];
-	episodeRating?: EpisodeRatingType[];
+	episodeRatingData?: IEpisodeRatingResponse[];
 }) {
-	const { hideModal } = useModal();
-	const handleOnModalClose = useCallback(() => {
-		hideModal();
-	}, []);
-
-	const [criteriaRatings, setCriteriaRatings] = useState<EpisodeRatingType[]>(
-		episodeRating ?? []
-	);
-	console.log(criteriaRatings);
-
-	const { updateCardEpisode } = useUpdateCardEpisode({
-		onSuccess() {
-			hideModal();
-		},
-	});
-
-	const handleOnSaveClick = useCallback(() => {
-		updateCardEpisode({ id: id, data: { ratings: criteriaRatings } });
-	}, [criteriaRatings]);
+	const {
+		criteria,
+		handleOnModalClose,
+		handleOnSaveClick,
+		hideModal,
+		criteriaRatings,
+		setCriteriaRatings,
+	} = useEpisodeModal(episodeRatingData ?? [], id);
 
 	return (
 		<Modal className={styles.modalWrapper} modalWidth='400px'>

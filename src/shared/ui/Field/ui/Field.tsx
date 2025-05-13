@@ -1,10 +1,11 @@
+import clsx from 'clsx';
 import { forwardRef } from 'react';
 import { Input } from '../../Input';
 import styles from './Field.module.scss';
 
 interface InputFieldProps {
 	id: string;
-	label: string;
+	label?: string;
 	extra?: string;
 	placeholder: string;
 	variant?: string;
@@ -12,23 +13,37 @@ interface InputFieldProps {
 	disabled?: boolean;
 	type?: string;
 	isNumber?: boolean;
+	className?: string;
 }
 
 export const Field = forwardRef<HTMLInputElement, InputFieldProps>(
 	(
-		{ label, id, extra, type, placeholder, state, disabled, isNumber, ...rest },
+		{
+			label,
+			id,
+			extra,
+			type,
+			placeholder,
+			state,
+			disabled,
+			isNumber,
+			className,
+			...rest
+		},
 		ref
 	) => (
-		<div className={styles.wrapper}>
-			<label htmlFor={id} className={styles.label}>
-				{label}
-			</label>
+		<div className={clsx(styles.wrapper, className)}>
+			{label && (
+				<label htmlFor={id} className={styles.label}>
+					{label}
+				</label>
+			)}
 			<Input
 				ref={ref}
 				type={type}
 				id={id}
 				placeholder={placeholder}
-				className={styles.input}
+				className={clsx(styles.input)}
 				disabled={disabled}
 				onKeyDown={(event: any) => {
 					if (

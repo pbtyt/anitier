@@ -1,9 +1,13 @@
-interface IEpisodeRatingResponse {
+import { CriteriaType } from '@/entities/card';
+
+export interface IEpisodeRatingResponse {
 	id: string;
 
 	rating: number;
 	episodeId: string;
 	criteriaId: string;
+
+	criteria: CriteriaType;
 }
 
 export interface IEpisodeResponse {

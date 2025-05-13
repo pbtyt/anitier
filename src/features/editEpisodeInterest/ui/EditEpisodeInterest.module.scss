@@ -1,0 +1,14 @@
+@use '@styles/helpers.scss' as h;
+
+.moreButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	padding: 0.35rem;
+
+	color: var(--at-color-gray-100);
+
+	background: h.hex-w-alpha(var(--at-color-gray-900), 0.25);
+	border-radius: 10px;
+}

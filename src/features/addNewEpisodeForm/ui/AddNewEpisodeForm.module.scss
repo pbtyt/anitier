@@ -1,0 +1,25 @@
+.addEpisodeForm {
+	width: 500px;
+
+	.episodeTitleField {
+		flex-grow: 1;
+	}
+	.episodeTitleField input {
+		background: none;
+	}
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	margin-top: 9px;
+	padding-left: 12px;
+	padding-right: 4px;
+
+	border-top: 1px solid var(--at-color-black-100);
+	background: var(--at-color-black-300);
+	border-radius: 6px;
+
+	// border-end-end-radius: 6px;
+	// border-end-start-radius: 6px;
+}

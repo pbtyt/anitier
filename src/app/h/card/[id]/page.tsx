@@ -7,7 +7,12 @@ export const metadata: Metadata = {
 	...NO_INDEX_PAGE,
 };
 
-// CHOOSE MENU
-export default function CardPageRoute() {
-	return <CardPage />;
+export default async function CardPageRoute({
+	params,
+}: {
+	params: Promise<{ id: string }>;
+}) {
+	const { id } = await params;
+
+	return <CardPage cardId={id} />;
 }

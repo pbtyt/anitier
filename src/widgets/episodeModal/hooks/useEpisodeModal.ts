@@ -1,0 +1,43 @@
+import { EpisodeRatingType } from '@/entities/card';
+import { IEpisodeRatingResponse } from '@/entities/episode';
+import { useUpdateCardEpisode } from '@/entities/episode/hooks/useUpdateCardEpisode';
+import { useModal } from '@/shared/hooks/useModal';
+import { useCallback, useState } from 'react';
+
+export const useEpisodeModal = (
+	episodeRatingData: IEpisodeRatingResponse[] | [],
+	episodeId: string
+) => {
+	const criteria = episodeRatingData?.map(e => e.criteria);
+
+	const { hideModal } = useModal();
+	const handleOnModalClose = useCallback(() => {
+		hideModal();
+	}, []);
+
+	const [criteriaRatings, setCriteriaRatings] = useState<EpisodeRatingType[]>(
+		episodeRatingData?.map(e => ({
+			rating: e.rating,
+			criteriaId: e.criteriaId,
+		})) ?? []
+	);
+
+	const { updateCardEpisode } = useUpdateCardEpisode({
+		onSuccess() {
+			hideModal();
+		},
+	});
+
+	const handleOnSaveClick = useCallback(() => {
+		updateCardEpisode({ id: episodeId, data: { ratings: criteriaRatings } });
+	}, [criteriaRatings]);
+
+	return {
+		criteria,
+		handleOnModalClose,
+		handleOnSaveClick,
+		hideModal,
+		criteriaRatings,
+		setCriteriaRatings,
+	};
+};

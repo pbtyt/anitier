@@ -6,7 +6,7 @@ def create_component_structure(layer: str, filename: str) -> None:
         print("Skipping generation for shared layer.")
         return
 
-    src_dir = Path("../src").resolve()
+    src_dir = Path("../../src").resolve()
     if not src_dir.exists():
         raise FileNotFoundError(f"Source directory '{src_dir}' not found.")
 
