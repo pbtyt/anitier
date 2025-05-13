@@ -7,14 +7,19 @@ import { EpisodeTab } from './EpisodeTab/EpisodeTab';
 
 //NOTE: WIP
 export function CardPage({ cardId }: { cardId: string }) {
-	console.log(UpTabs.Tab);
 	return (
 		<main className={styles.wrapper}>
 			<CardInfoSection cardId={cardId} />
 			<UpTabs>
-				<UpTabs.Tab title='Эпизоды' />
-				<UpTabs.Tab title='Редактирование критериев' />
-				<UpTabs.Tab title='Оценка' />
+				<UpTabs.TabsHeader>
+					<UpTabs.Tab title='Эпизоды' />
+					<UpTabs.Tab title='Редактирование критериев' />
+					<UpTabs.Tab title='Оценка' />
+				</UpTabs.TabsHeader>
+
+				<UpTabs.Content viewIndex={0}>FIRST</UpTabs.Content>
+				<UpTabs.Content viewIndex={1}>SECOND</UpTabs.Content>
+				<UpTabs.Content viewIndex={2}>THIRD</UpTabs.Content>
 			</UpTabs>
 			<EpisodeTab cardId={cardId} />
 		</main>

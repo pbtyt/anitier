@@ -6,7 +6,6 @@ import {
 	Children,
 	cloneElement,
 	createContext,
-	isValidElement,
 	PropsWithChildren,
 	ReactElement,
 	useContext,
@@ -15,6 +14,7 @@ import {
 } from 'react';
 import styles from './UpTabs.module.scss';
 
+/*============TAB CONTEXT============*/
 type TabsContextType = {
 	currentActiveTabIndex: number;
 	setCurrentActiveTabIndex: SetStateType<number>;
@@ -38,17 +38,21 @@ const TabsProvider = ({ children }: { children: React.ReactNode }) => {
 
 	return <TabsContext.Provider value={value}>{children}</TabsContext.Provider>;
 };
+/*============TAB CONTEXT============*/
+
+/*============TAB COMPONENTS============*/
 
 interface ITabProps {
 	index?: number;
 	title: string;
+	className?: string;
 }
-function Tab({ index, title }: ITabProps) {
+function Tab({ index, title, className }: ITabProps) {
 	const { currentActiveTabIndex, setCurrentActiveTabIndex } = useTabsContext();
 	const isActive = index === currentActiveTabIndex;
 	return (
 		<div
-			className={styles.tab}
+			className={clsx(styles.tab, className)}
 			onClick={() => setCurrentActiveTabIndex(index ?? currentActiveTabIndex)}
 		>
 			<span className={clsx(styles.tabText, isActive && styles.active)}>
@@ -58,21 +62,52 @@ function Tab({ index, title }: ITabProps) {
 	);
 }
 
-export function UpTabs({ children }: PropsWithChildren<unknown>) {
+function Header({
+	className,
+	children,
+}: PropsWithChildren<{ className?: string }>) {
 	return (
-		<TabsProvider>
-			<div className={styles.tabs}>
-				{Children.map(children, (child, index) => {
-					const item = child as ReactElement<PropsWithChildren<ITabProps>>;
-					if (isValidElement(child)) {
-						return cloneElement(item, { ...item.props, index: index });
-					}
+		<div className={styles.tabs}>
+			{Children.map(children, (child, index) => {
+				const item = child as ReactElement<PropsWithChildren<ITabProps>>;
 
-					return child;
-				})}
-			</div>
-		</TabsProvider>
+				if (item.type === Tab) {
+					return cloneElement(item, { ...item.props, index: index });
+				}
+
+				return child;
+			})}
+		</div>
 	);
 }
 
+interface ITabContentProps {
+	viewIndex: number;
+	className?: string;
+}
+function Content({
+	viewIndex,
+	className,
+	children,
+}: PropsWithChildren<ITabContentProps>) {
+	const { currentActiveTabIndex } = useTabsContext();
+	const shouldRender = viewIndex === currentActiveTabIndex;
+	return shouldRender && <div className={className}>{children}</div>;
+}
+
+export function UpTabs({
+	className,
+	children,
+}: PropsWithChildren<{ className?: string }>) {
+	return (
+		<TabsProvider>
+			<div className={clsx(styles.tabMenuWrapper, className)}>{children}</div>
+		</TabsProvider>
+	);
+}
+/*============TAB COMPONENTS============*/
+
+// UpTabs.Tab = Tab;
+UpTabs.TabsHeader = Header;
 UpTabs.Tab = Tab;
+UpTabs.Content = Content;
