@@ -1,3 +1,5 @@
+//TODO: Rewrite all types
+
 import { CriteriaType } from '@/entities/card';
 
 export interface IEpisodeRatingResponse {

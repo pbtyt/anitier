@@ -1,3 +1,5 @@
+//TODO: Rewrite all types
+
 import { TypeFrom } from '@/shared/utils/utilTypes';
 
 export type CardType = {

@@ -4,6 +4,7 @@ import { UpTabs } from '@/shared/ui/Tabs';
 import { EpisodeTab } from '../EpisodeTab/EpisodeTab';
 
 export function TabSection({ cardId }: { cardId: string }) {
+	//TODO: Second Tab (Edit/Create/Delete Criteria)
 	return (
 		<UpTabs>
 			<UpTabs.TabsHeader>
