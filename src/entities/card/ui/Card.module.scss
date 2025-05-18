@@ -56,7 +56,8 @@
 		text-align: center;
 	}
 
-	.trashButton {
+	.trashButton,
+	.editButton {
 		visibility: collapse;
 		opacity: 0;
 
@@ -64,7 +65,6 @@
 
 		position: absolute;
 		top: 1rem;
-		right: 1rem;
 
 		display: flex;
 		align-items: center;
@@ -73,11 +73,24 @@
 		padding: 0.45rem;
 
 		border-radius: 15px;
+	}
+
+	.trashButton {
+		right: 1rem;
 
 		color: var(--at-color-red);
 		background: h.hex-w-alpha(var(--at-color-red), 0.5);
 	}
-	&:hover .trashButton {
+
+	.editButton {
+		right: calc(2.5rem + 30px);
+
+		color: var(--at-color-gray-100);
+		background: var(--at-color-black-100);
+	}
+
+	&:hover .trashButton,
+	&:hover .editButton {
 		visibility: visible;
 		opacity: 1;
 

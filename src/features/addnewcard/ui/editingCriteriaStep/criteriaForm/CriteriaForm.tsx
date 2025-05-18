@@ -14,19 +14,19 @@ export interface CriteriaFormProps {
 export const CriteriaForm = ({ disabled }: CriteriaFormProps) => {
 	const { setCriteria } = useEditingCriteriaContext();
 	const [criteriaTitle, setCriteriaTitle] = useState('');
-	const [criteriaWeight, setCriteriaWeight] = useState(0);
+	const [criteriaWeight, setCriteriaWeight] = useState('0');
 
 	const handleAddButtonClick = useCallback(() => {
 		const newCriterion = {
-			id: Date.now(),
+			id: String(Date.now()), //TODO: FIX
 			title: criteriaTitle,
-			weight: criteriaWeight,
+			weight: parseInt(criteriaWeight),
 		};
 
 		setCriteria(prev => [newCriterion, ...prev]);
 
 		setCriteriaTitle('');
-		setCriteriaWeight(0);
+		setCriteriaWeight('');
 	}, [criteriaTitle, criteriaWeight, setCriteria]);
 
 	return (
@@ -40,9 +40,11 @@ export const CriteriaForm = ({ disabled }: CriteriaFormProps) => {
 			/>
 			<Input
 				type='number'
+				min={0}
+				max={100}
 				className={styles.criteriaWeight}
 				value={criteriaWeight}
-				onChange={e => setCriteriaWeight(e.target.valueAsNumber)}
+				onChange={e => setCriteriaWeight(e.target.value)}
 				disabled={disabled}
 			/>
 

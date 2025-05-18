@@ -3,8 +3,9 @@
 import { SITE_ROUTES_BASE } from '@/shared/config/page-url.config';
 import { Image } from '@/shared/ui/Image';
 import clsx from 'clsx';
-import { Trash2 } from 'lucide-react';
+import { Edit, Trash2 } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
 import { useDeleteCard } from '../hooks/useDeleteCard';
 import { ICardResponse } from '../model/types';
@@ -16,10 +17,16 @@ interface ICardProps {
 }
 
 export function Card({ cardData, className }: ICardProps) {
+	const { push } = useRouter();
+
 	const { deleteCard } = useDeleteCard();
 
 	const handleOnDelete = useCallback(() => {
 		deleteCard(cardData.id);
+	}, []);
+
+	const handleOnEdit = useCallback(() => {
+		push(`${SITE_ROUTES_BASE.EDIT_CARD}/${cardData.id}`);
 	}, []);
 
 	return (
@@ -37,6 +44,9 @@ export function Card({ cardData, className }: ICardProps) {
 
 				<h2 className={styles.cardTitle}>{cardData.title}</h2>
 			</Link>
+			<button className={styles.editButton} onClick={handleOnEdit}>
+				<Edit size={30} />
+			</button>
 			<button className={styles.trashButton} onClick={handleOnDelete}>
 				<Trash2 size={30} />
 			</button>
