@@ -1,0 +1,16 @@
+.customBarWrapper {
+	width: 100%;
+	position: relative;
+
+	.customBarBg,
+	.customBarProgress {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	.customBarProgress {
+		--norm: 0.5px;
+		clip-path: rect(0px calc(var(--percentage) + var(--norm)) 100% 0px);
+	}
+}

@@ -1,4 +1,5 @@
-import { Minus, Plus, Star } from 'lucide-react';
+import { CustomStar } from '@/shared/ui/Star/Star';
+import { Minus, Plus } from 'lucide-react';
 import { useMemo } from 'react';
 import styles from './Rating.module.scss';
 
@@ -8,12 +9,6 @@ interface RatingProps {
 	handleOnMinusClick: () => void;
 }
 
-const ActiveStarProps = { fill: 'var(--at-star-active-color)', strokeWidth: 0 };
-const EmptyStarProps = {
-	fill: 'var(--at-star-inactive-color)',
-	strokeWidth: 0,
-};
-
 export function Rating({
 	rating,
 	handleOnPlusClick,
@@ -22,12 +17,7 @@ export function Rating({
 	const stars = useMemo(
 		() =>
 			[...Array(5)].map((_, index) => (
-				<Star
-					key={`star${index}`}
-					{...(rating > index ? ActiveStarProps : EmptyStarProps)}
-					width={30}
-					height={30}
-				/>
+				<CustomStar key={`star${index}`} isActive={rating > index} />
 			)),
 		[rating]
 	);

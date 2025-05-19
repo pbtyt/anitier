@@ -8,16 +8,15 @@ load_dotenv(find_dotenv())
 
 BEARER_TOKEN = env.get("BEARER_TOKEN")
 BASE_API_URL = "http://localhost:4200/api"
+HEADERS = {
+	"Content-Type": "application/json",
+	"Authorization": f"Bearer {BEARER_TOKEN}"
+}
 
 def make_post(url, data) -> request.Request:
-	headers = {
-		"Content-Type": "application/json",
-    	"Authorization": f"Bearer {BEARER_TOKEN}"
-	}
-
 	json_data = json.dumps(data).encode('utf-8')
 
-	return request.Request(f"{BASE_API_URL}/{url}", data=json_data, headers=headers, method="POST")
+	return request.Request(f"{BASE_API_URL}/{url}", data=json_data, headers=HEADERS, method="POST")
 
 def main():
 	try:
