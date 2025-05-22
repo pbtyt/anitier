@@ -17,6 +17,7 @@ interface ICardProps {
 }
 
 export function Card({ cardData, className }: ICardProps) {
+	//TODO: Decompose
 	const { push } = useRouter();
 
 	const { deleteCard } = useDeleteCard();

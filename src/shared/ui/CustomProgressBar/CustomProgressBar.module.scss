@@ -1,8 +1,7 @@
 .customBarWrapper {
-	width: 100%;
+	width: max-content;
 	position: relative;
 
-	.customBarBg,
 	.customBarProgress {
 		position: absolute;
 		top: 0;

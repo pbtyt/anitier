@@ -44,3 +44,25 @@
 .modalWrapper.downAlign {
 	align-self: flex-end;
 }
+
+.title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 1rem;
+
+	.closeButton {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.5rem;
+		border-radius: 6px;
+		color: var(--at-ui-colors-text-primary);
+		transition: background 0.3s ease;
+
+		&:hover {
+			background-color: #ffffff1a;
+			transition: background 0.3s ease;
+		}
+	}
+}

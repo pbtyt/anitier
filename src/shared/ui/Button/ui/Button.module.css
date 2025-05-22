@@ -3,8 +3,6 @@
 
 	position: relative;
 
-	padding: 14px 20px;
-
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
@@ -38,4 +36,16 @@
 .button:disabled {
 	opacity: 0.5;
 	cursor: not-allowed;
+}
+
+.button.sm {
+	padding: 8px 16px;
+}
+
+.button.md {
+	padding: 12px 24px;
+}
+
+.button.lg {
+	padding: 16px 32px;
 }

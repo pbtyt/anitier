@@ -1,18 +1,79 @@
 @use '@styles/helpers.scss' as h;
 
-.info {
+.wrapper {
+	width: 100%;
 	display: flex;
-	flex-direction: column;
-	.number {
-		color: var(--at-ui-colors-text-primary);
-		font-size: 17px;
-		line-height: 22px;
-		font-weight: 600;
+	gap: 10px;
+
+	.episode {
+		border-radius: 8px;
+
+		padding: 10px 15px;
+		background: var(--at-color-gray-800);
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		span {
+			color: var(--at-ui-colors-text-secondary);
+			font-size: 16px;
+			margin-bottom: 2px;
+		}
+
+		.number {
+			// color: var(--at-color-black-800);
+			color: #e0e0e0;
+			font-size: 18px;
+			line-height: 22px;
+			font-weight: 600;
+		}
 	}
 
-	.title {
-		font-weight: 500;
-		color: var(--at-color-gray-300);
-		font-size: 15px;
+	.info {
+		flex-grow: 1;
+
+		display: flex;
+		flex-direction: column;
+
+		.title {
+			color: #e0e0e0;
+			font-weight: 600;
+			font-size: 16px;
+		}
+
+		.progressBarWrapper {
+			width: 100%;
+			position: relative;
+			/* cursor: pointer; */
+
+			/* !MAYBE DELETE THIS () */
+			height: 12px;
+			display: flex;
+			align-items: center;
+
+			&::before {
+				content: '';
+				position: absolute;
+				border-radius: 4px;
+				left: 0;
+				width: 100%;
+				background-color: h.hex-w-alpha(var(--at-ui-colors-primary), 0.05);
+				height: 6px;
+			}
+
+			.progressBar {
+				border-radius: 4px;
+				width: 65%;
+				background-color: var(--at-ui-colors-primary);
+				height: 6px;
+				position: relative;
+			}
+		}
+
+		.tips {
+			font-size: 15px;
+			color: var(--at-color-gray-300);
+		}
 	}
 }

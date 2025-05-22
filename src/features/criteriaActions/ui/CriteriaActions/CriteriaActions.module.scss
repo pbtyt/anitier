@@ -1,0 +1,36 @@
+@use '@styles/helpers.scss' as h;
+
+.trashButton,
+.editButton {
+	//button padding
+	--padding: 0.25rem;
+	// icon size
+	--size: 24px;
+	// offset pos
+	--offset: 10px;
+
+	position: absolute;
+	top: var(--offset);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	padding: 0.25rem;
+
+	border-radius: 8px;
+}
+
+.trashButton {
+	right: var(--offset);
+
+	color: var(--at-color-red);
+	background: h.hex-w-alpha(var(--at-color-red), 0.5);
+}
+
+.editButton {
+	right: calc(var(--offset) + var(--size) + var(--padding) * 2 + var(--offset));
+
+	color: var(--at-color-gray-100);
+	background: var(--at-color-black-500);
+}

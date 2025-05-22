@@ -1,10 +1,22 @@
-import { CustomProgressBar } from '@/shared/ui/CustomProgressBar/CustomProgressBar';
+'use client';
+
+import { useCriteria } from '@/entities/criteria/hooks/useCriteria';
+import { CriteriaWithActions } from '@/widgets/criteriaWithActions';
 import styles from './CriteriaTab.module.scss';
 
 export function CriteriaTab({ cardId }: { cardId: string }) {
+	const { criteria } = useCriteria({ cardId: cardId });
+
 	return (
 		<section className={styles.wrapper}>
-			<CustomProgressBar percentage={80} />
+			{criteria?.map(c => (
+				<CriteriaWithActions
+					id={c.id}
+					title={c.title}
+					weight={c.weight}
+					key={c.id}
+				/>
+			))}
 		</section>
 	);
 }

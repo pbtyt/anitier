@@ -18,6 +18,7 @@ export interface IEpisodeResponse {
 	updatedAt: string;
 
 	title: string;
+	number: number;
 
 	episodeRating: IEpisodeRatingResponse[];
 }
