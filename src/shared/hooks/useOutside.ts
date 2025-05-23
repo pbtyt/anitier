@@ -10,7 +10,7 @@ export const useOutside = (
 	initialIsVisible: boolean,
 	onClose: () => void = () => {}
 ): TypeOut => {
-	//TODO: UseCallback Wrapper Need And useMemo too (mb)
+	//TODO: UseCallback Wrapper Need And useMemo too (mb) ????/
 	const [isShow, setIsShow] = useState<boolean>(initialIsVisible);
 	const ref = useRef<HTMLElement>(null);
 
@@ -20,12 +20,12 @@ export const useOutside = (
 			onClose();
 		}
 	};
-
+	//TODO: Support touch for mobile
 	useEffect(() => {
-		document.addEventListener('click', handleClickOutside, true);
+		document.addEventListener('mousedown', handleClickOutside);
 
 		return () => {
-			document.removeEventListener('click', handleClickOutside, true);
+			document.removeEventListener('mousedown', handleClickOutside);
 		};
 	});
 

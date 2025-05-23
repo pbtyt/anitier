@@ -39,8 +39,8 @@
 				transition: all 300ms ease-in;
 			}
 
-			button:not(.regForm) {
-				background: h.hex-w-alpha(var(--at-color-white-800), 0.85);
+			.baseButton {
+				background: h.hex-w-alpha(var(--at-color-white-800), 1);
 				color: var(--at-ui-colors-background);
 			}
 		}
