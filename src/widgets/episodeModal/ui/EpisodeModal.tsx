@@ -8,6 +8,7 @@ import { X } from 'lucide-react';
 import { useEpisodeModal } from '../hooks/useEpisodeModal';
 import styles from './EpisodeModal.module.scss';
 
+//TODO: RENAME PROPS (AND FOR CHILD COMP.) !!!!!!!!!!!!!!!!!!! IMPORTANT
 export function EpisodeModal({
 	id,
 	episodeRatingData,
@@ -22,6 +23,7 @@ export function EpisodeModal({
 		hideModal,
 		criteriaRatings,
 		setCriteriaRatings,
+		interest,
 	} = useEpisodeModal(episodeRatingData ?? [], id);
 
 	return (
@@ -34,6 +36,7 @@ export function EpisodeModal({
 			</div>
 
 			<CriteriaList
+				interest={interest}
 				criteria={criteria ?? []}
 				episodeRating={criteriaRatings}
 				setEpisodeRating={setCriteriaRatings}

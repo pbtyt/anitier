@@ -8,6 +8,7 @@ interface IEpisodeWithActionsProps {
 	number: number;
 	id: string;
 	episodeRatingData?: IEpisodeRatingResponse[];
+	progress: number;
 }
 
 export function EpisodeWithActions({
@@ -15,10 +16,11 @@ export function EpisodeWithActions({
 	number,
 	title,
 	episodeRatingData,
+	progress,
 }: IEpisodeWithActionsProps) {
 	return (
 		<div className={styles.wrapper}>
-			<Episode number={number} title={title} />
+			<Episode number={number} title={title} progress={progress} />
 			<EditEpisodeInterest
 				episodeId={id}
 				episodeRatingData={episodeRatingData}

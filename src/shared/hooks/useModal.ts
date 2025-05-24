@@ -11,6 +11,7 @@ export const useModal = () => {
 		setActiveModals([...activeModals, modalWindow]);
 	};
 
+	//TODO: Add UseCallback, and remove from other files whos using usecallback for hideModal
 	const hideModal = () => {
 		if (activeModals.length === 1) toggleBodyOverflow(true);
 

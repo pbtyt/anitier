@@ -21,6 +21,8 @@ export interface IEpisodeResponse {
 	number: number;
 
 	episodeRating: IEpisodeRatingResponse[];
+
+	totalEpisodeRating: number;
 }
 
 export type EpisodeFormStateType = Partial<

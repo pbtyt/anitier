@@ -2,7 +2,6 @@
 
 import { CriteriaType, EpisodeRatingType } from '@/entities/card';
 import { SetStateType } from '@/shared/utils/utilTypes';
-import { useRating } from '../../hooks/useRating';
 import { Criteria } from '../Criteria/Criteria';
 import styles from './CriteriaList.module.scss';
 
@@ -10,12 +9,14 @@ interface ICriteriaProps {
 	criteria: CriteriaType[] | [];
 	episodeRating: EpisodeRatingType[] | [];
 	setEpisodeRating: SetStateType<EpisodeRatingType[]>;
+	interest: number;
 }
-
+//TODO: Move CriteriaList From 'features' to 'widgets/episodeModal'
 export function CriteriaList({
 	criteria,
 	episodeRating,
 	setEpisodeRating,
+	interest,
 }: ICriteriaProps) {
 	const handleRatingChange = (criteriaId: string, newRating: number) => {
 		setEpisodeRating(prev =>
@@ -24,8 +25,6 @@ export function CriteriaList({
 			)
 		);
 	};
-
-	const { interest } = useRating(episodeRating, criteria);
 
 	return (
 		<>

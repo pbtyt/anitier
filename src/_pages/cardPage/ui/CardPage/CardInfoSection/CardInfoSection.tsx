@@ -34,7 +34,7 @@ export function CardInfoSection({ cardId }: { cardId: string }) {
 				<ul className={styles.metadataWrapper}>
 					<li className={styles.metadataInfo}>
 						<span className={styles.title}>Жанр</span>
-						<div className={styles.valueWrapper}>Имба</div>
+						<div className={styles.valueWrapper}>Сенен</div>
 					</li>
 					<li className={styles.metadataInfo}>
 						<span className={styles.title}>Тип</span>

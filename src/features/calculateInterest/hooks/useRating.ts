@@ -1,7 +1,13 @@
 import { CriteriaType, EpisodeRatingType } from '@/entities/card';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { calculateInterest } from '../helpers/calculateInterest';
-
+/*
+ * NOTE:
+ * The rating is stored in the database, but we do not take it from the database, we count * it on the client. (we take from the database only to calculate the progress bar in Episode)
+ * there may be a problem in synchronizing the rating values with the database
+ * Most likely there will be no problem, because we count the value on the client and recalculate it every time the criterion rating changes.
+ *
+ */
 export const useRating = (
 	criteriaRatings: EpisodeRatingType[],
 	criteria: CriteriaType[]
@@ -10,7 +16,6 @@ export const useRating = (
 		() => calculateInterest(criteriaRatings, criteria),
 		[criteriaRatings]
 	);
-	useEffect(() => {}, [interest]);
 
 	return { interest };
 };

@@ -2,7 +2,7 @@ import { IAuthForm } from '@/entities/auth';
 import { authService } from '@/entities/auth/services/auth.service';
 import { SITE_ROUTES_BASE } from '@/shared/config/page-url.config';
 import { useMutation } from '@tanstack/react-query';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
