@@ -2,11 +2,9 @@
 
 import { useUpdateCriteria } from '@/entities/criteria/hooks/useUpdateCriteria';
 import { CriteriaFormStateType } from '@/entities/criteria/model/types';
-import { useModal } from '@/shared/hooks/useModal';
 import { Button } from '@/shared/ui/Button';
 import { Field } from '@/shared/ui/Field/ui/Field';
 import { Modal } from '@/shared/ui/Modal';
-import { useCallback } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from './EditCriteriaModal.module.scss';
 
@@ -17,11 +15,6 @@ export function EditCriteriaModal({
 	id: string;
 	data: CriteriaFormStateType;
 }) {
-	const { hideModal } = useModal();
-	const handleOnModalClose = useCallback(() => {
-		hideModal();
-	}, []);
-
 	const { updateCriteria } = useUpdateCriteria();
 
 	const { register, handleSubmit } = useForm<CriteriaFormStateType>({
@@ -29,6 +22,7 @@ export function EditCriteriaModal({
 	});
 
 	const onSubmit: SubmitHandler<CriteriaFormStateType> = data => {
+		console.log(data);
 		updateCriteria({
 			id: id,
 			data: data,
@@ -55,7 +49,7 @@ export function EditCriteriaModal({
 					id='criteria-weight'
 					placeholder={'Ценность критерия...'}
 					label='Ценность'
-					{...register('weight')}
+					{...register('weight', { valueAsNumber: true })}
 				/>
 			</form>
 			<div className={styles.footer}>

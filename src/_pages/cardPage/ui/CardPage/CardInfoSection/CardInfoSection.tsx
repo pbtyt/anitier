@@ -29,7 +29,10 @@ export function CardInfoSection({ cardId }: { cardId: string }) {
 			<div className={styles.right}>
 				<h2 className={styles.title}>{card?.title}</h2>
 				<span className={styles.episodesNumber}>
-					{card?.episodesNumber} серий
+					{card?.episodesNumber}{' '}
+					{card?.episodesNumber && card.episodesNumber % 5 === 0
+						? 'серий'
+						: 'серии'}
 				</span>
 
 				<ul className={styles.metadataWrapper}>
