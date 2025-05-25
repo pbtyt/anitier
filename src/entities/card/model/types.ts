@@ -1,5 +1,6 @@
 //TODO: Rewrite all types
 
+import { type CriteriaType } from '@/entities/criteria';
 import { TypeFrom } from '@/shared/utils/utilTypes';
 
 export type CardType = {
@@ -8,12 +9,6 @@ export type CardType = {
 	posterUrl?: string;
 
 	criteria: CriteriaType[];
-};
-
-export type CriteriaType = {
-	id: string;
-	title: string;
-	weight: number;
 };
 
 export type EpisodeRatingType = { rating: number; criteriaId: string };
@@ -26,25 +21,25 @@ export type EpisodeType = {
 export interface ICardResponse {
 	id: string;
 
-	createdAt?: string;
-	updatedAt?: string;
+	createdAt: string;
+	updatedAt: string;
 
 	title: string;
 	posterUrl?: string;
-	status?: CardStatusType;
-	type?: CardTypeType;
+	status: CardStatusType;
+	type: CardTypeType;
 	episodesNumber: number;
 
 	criteria?: CriteriaType[];
 	episodes?: EpisodeType[];
 }
 
-const Type = {
+export const Type = {
 	TV: 'TV',
 	FILM: 'FILM',
 } as const;
 
-const Status = {
+export const Status = {
 	ONGOING: 'ONGOING',
 	FINISHED: 'FINISHED',
 } as const;

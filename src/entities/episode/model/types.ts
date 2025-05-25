@@ -1,6 +1,6 @@
 //TODO: Rewrite all types
 
-import { CriteriaType } from '@/entities/card';
+import { type ICriteriaResponse } from '@/entities/criteria';
 
 export interface IEpisodeRatingResponse {
 	id: string;
@@ -9,20 +9,17 @@ export interface IEpisodeRatingResponse {
 	episodeId: string;
 	criteriaId: string;
 
-	criteria: CriteriaType;
+	criteria: ICriteriaResponse;
 }
 
 export interface IEpisodeResponse {
 	id: string;
-	createdAt: string;
-	updatedAt: string;
 
 	title: string;
 	number: number;
 
-	episodeRating: IEpisodeRatingResponse[];
-
 	totalEpisodeRating: number;
+	episodeRating: IEpisodeRatingResponse[];
 }
 
 export type EpisodeFormStateType = Partial<

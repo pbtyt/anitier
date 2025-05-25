@@ -1,5 +1,6 @@
 'use client';
 
+import { CARD_CONST_LABELS } from '@/entities/card';
 import { useCard } from '@/entities/card/hooks/useCard';
 import { UploadImage } from '@/features/uploadImage';
 import { Image } from '@/shared/ui/Image';
@@ -38,11 +39,17 @@ export function CardInfoSection({ cardId }: { cardId: string }) {
 					</li>
 					<li className={styles.metadataInfo}>
 						<span className={styles.title}>Тип</span>
-						<span className={styles.value}>{card?.type}</span>
+						<span className={styles.value}>
+							{/* TODO: ??? */}
+							{card?.type ? CARD_CONST_LABELS[card.type] : ''}
+						</span>
 					</li>
 					<li className={styles.metadataInfo}>
 						<span className={styles.title}>Статус</span>
-						<span className={styles.value}>{card?.status}</span>
+						<span className={styles.value}>
+							{/* TODO: ??? */}
+							{card?.status ? CARD_CONST_LABELS[card.status] : ''}
+						</span>
 					</li>
 					<li className={styles.metadataInfo}>
 						<span className={styles.title}>Год</span>
