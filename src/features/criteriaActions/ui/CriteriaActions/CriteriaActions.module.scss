@@ -26,6 +26,13 @@
 
 	color: var(--at-color-red);
 	background: h.hex-w-alpha(var(--at-color-red), 0.5);
+
+	&:hover {
+		background: h.hex-w-alpha(var(--at-color-red), 0.35);
+		transition: background 150ms ease-in;
+	}
+
+	transition: background 150ms ease-out;
 }
 
 .editButton {
@@ -33,4 +40,12 @@
 
 	color: var(--at-color-gray-100);
 	background: var(--at-color-black-500);
+
+	&:hover {
+		background: h.hex-w-alpha(var(--at-color-black-700), 0.35);
+		// background: var(--at-color-black-700);
+		transition: background 150ms ease-in;
+	}
+
+	transition: background 150ms ease-out;
 }

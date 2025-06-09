@@ -11,4 +11,11 @@
 
 	background: h.hex-w-alpha(var(--at-color-gray-800), 1);
 	border-radius: 10px;
+
+	&:hover {
+		background: h.hex-w-alpha(var(--at-color-gray-600), 0.65);
+		transition: background 150ms ease-in;
+	}
+
+	transition: background 150ms ease-out;
 }

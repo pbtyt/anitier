@@ -6,6 +6,7 @@ import styles from './CriteriaTab.module.scss';
 
 export function CriteriaTab({ cardId }: { cardId: string }) {
 	const { criteria } = useCriteria({ cardId: cardId });
+	console.log(criteria);
 
 	return (
 		<section className={styles.wrapper}>

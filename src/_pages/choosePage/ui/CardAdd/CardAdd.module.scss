@@ -1,6 +1,7 @@
 .cardWrapper {
 	cursor: pointer;
 
+	flex: 1 0 var(--at-ui-card-width);
 	width: var(--at-ui-card-width);
 	height: var(--at-ui-card-height);
 

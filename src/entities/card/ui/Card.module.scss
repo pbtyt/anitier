@@ -5,6 +5,7 @@
 
 	cursor: pointer;
 
+	flex: 1 0 var(--at-ui-card-width);
 	width: var(--at-ui-card-width);
 	height: var(--at-ui-card-height);
 
@@ -36,24 +37,29 @@
 	}
 
 	.cardPoster {
-		--card-poster-width: 10rem;
+		--card-poster-width: 15rem;
 
 		flex-grow: 1;
 
 		border: 2px solid var(--at-color-black-100);
 
 		width: var(--card-poster-width);
+		max-width: var(--card-poster-width);
 		height: auto;
 
 		border-radius: 50%;
 
 		img {
 			border-radius: 50%;
+			aspect-ratio: 1;
+			object-fit: cover;
+			object-position: center;
 		}
 	}
 
 	.cardTitle {
 		text-align: center;
+		line-height: 1.2;
 	}
 
 	.trashButton,

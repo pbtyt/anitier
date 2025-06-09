@@ -1,23 +1,80 @@
 'use client';
 
+import { getSize } from '@/shared/utils/getElementSize';
 import { clsx } from 'clsx';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { PropsWithChildren, RefObject, useRef, useState } from 'react';
+import {
+	PropsWithChildren,
+	RefObject,
+	useCallback,
+	useRef,
+	useState,
+} from 'react';
 import styles from './scroll.module.css';
 
+//TODO: Rewrite This Component
+
 enum ArrowDirection {
-	Left,
-	Right,
+	Left = -1,
+	Right = 1,
 }
 
 interface IArrow {
 	scrollRef: RefObject<HTMLDivElement | null>;
 	scrollStep: number;
 	direction: ArrowDirection;
+
+	//TODO: Rename
+	normalize: number;
 }
 
-function Arrow({ scrollRef, scrollStep, direction }: IArrow) {
+const arrowsConfig = {
+	[ArrowDirection.Left]: (
+		<ChevronLeft
+			color='rgba(255, 255, 255, 0.96)'
+			size={40}
+			style={{
+				position: 'absolute',
+
+				top: '50%',
+				left: '50%',
+				transform: 'translate(-50%, -50%)',
+			}}
+		/>
+	),
+	[ArrowDirection.Right]: (
+		<ChevronRight
+			color='rgba(255, 255, 255, 0.96)'
+			size={40}
+			style={{
+				position: 'absolute',
+
+				top: '50%',
+				left: '50%',
+				transform: 'translate(-50%, -50%)',
+			}}
+		/>
+	),
+};
+
+function Arrow({ scrollRef, scrollStep, direction, normalize }: IArrow) {
 	const [arrowHover, setArrowHover] = useState<boolean>(false);
+
+	const onScrollClick = useCallback(() => {
+		if (!scrollRef?.current) return;
+
+		if (direction === ArrowDirection.Right) {
+			if (
+				scrollRef.current.scrollLeft >=
+				getSize(scrollRef.current).width - normalize
+			)
+				setArrowHover(false);
+			scrollRef.current.scrollLeft += scrollStep;
+		} else {
+			if (scrollRef.current.scrollLeft <= 0 + normalize) setArrowHover(false);
+			scrollRef.current.scrollLeft -= scrollStep;
+		}
+	}, [scrollRef.current]);
 
 	return (
 		<div
@@ -35,48 +92,16 @@ function Arrow({ scrollRef, scrollStep, direction }: IArrow) {
 				style={
 					arrowHover
 						? {
-								display: 'block',
-								transform: `translateX(${
-									direction === ArrowDirection.Right ? '15px' : '-15px'
-								})`,
+								display: 'flex',
+								alignItems: 'center',
+								justifyContent: 'center',
+								transform: `translateX(${direction * 5}px)`,
 						  }
 						: {}
 				}
-				onClick={() => {
-					if (!scrollRef?.current) return;
-
-					if (direction === ArrowDirection.Right) {
-						if (scrollRef.current.scrollLeft >= 300) setArrowHover(false);
-						scrollRef.current.scrollLeft += scrollStep;
-					} else {
-						if (scrollRef.current.scrollLeft <= 0) setArrowHover(false);
-						scrollRef.current.scrollLeft -= scrollStep;
-					}
-				}}
+				onClick={onScrollClick}
 			>
-				{direction === ArrowDirection.Right ? (
-					<ChevronRight
-						color='rgba(255, 255, 255, 0.96)'
-						size={15}
-						style={{
-							position: 'absolute',
-							top: '50%',
-							left: '50%',
-							transform: 'translate(-50%, -50%)',
-						}}
-					/>
-				) : (
-					<ChevronLeft
-						color='rgba(255, 255, 255, 0.96)'
-						size={15}
-						style={{
-							position: 'absolute',
-							top: '50%',
-							left: '50%',
-							transform: 'translate(-50%, -50%)',
-						}}
-					/>
-				)}
+				{arrowsConfig[direction]}
 			</button>
 		</div>
 	);
@@ -86,6 +111,8 @@ interface IScroll {
 	className?: string;
 	scrollStep?: number;
 	hideArrows?: boolean;
+	//TODO: Rename Too
+	normalize?: number;
 }
 
 export function Scroll({
@@ -93,8 +120,10 @@ export function Scroll({
 	className,
 	scrollStep = 80,
 	hideArrows = false,
+	normalize = 500,
 }: PropsWithChildren<IScroll>) {
 	const scrollRef = useRef<HTMLDivElement>(null);
+
 	return (
 		<div className={styles.scrollWrapper}>
 			<div className={clsx(styles.scroll, className)} ref={scrollRef}>
@@ -107,12 +136,14 @@ export function Scroll({
 						scrollRef={scrollRef}
 						scrollStep={scrollStep}
 						direction={ArrowDirection.Right}
+						normalize={normalize}
 					/>
 
 					<Arrow
 						scrollRef={scrollRef}
 						scrollStep={scrollStep}
 						direction={ArrowDirection.Left}
+						normalize={normalize}
 					/>
 				</>
 			)}

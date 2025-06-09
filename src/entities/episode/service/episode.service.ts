@@ -8,9 +8,9 @@ import {
 class EpisodesService {
 	private BASE_ROOT = '/card/episodes';
 
-	async getEpisodes(cardId: string) {
+	async getEpisodes(cardId: string, fields?: string) {
 		const response = await axiosWithAuth.get<IEpisodeResponse[]>(
-			`${this.BASE_ROOT}/${cardId}/all`
+			`${this.BASE_ROOT}/${cardId}/all?fields=${fields}`
 		);
 
 		return response;

@@ -10,7 +10,7 @@ interface IEpisodeListProps {
 
 export function EpisodeList({ cardId }: IEpisodeListProps) {
 	const { episodes } = useCardEpisodes({ cardId: cardId });
-
+	console.log(episodes);
 	return (
 		<>
 			{episodes?.map((e, index) => (

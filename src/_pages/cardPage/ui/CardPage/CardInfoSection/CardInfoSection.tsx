@@ -7,7 +7,13 @@ import { Image } from '@/shared/ui/Image';
 import styles from './CardInfoSection.module.scss';
 
 export function CardInfoSection({ cardId }: { cardId: string }) {
-	const { card } = useCard({ id: cardId });
+	const { card } = useCard({
+		id: cardId,
+		fields: 'posterUrl,title,episodesNumber,type,status,episodes' as const,
+	});
+
+	const episodesNumber = card?.episodes?.length ?? 0;
+
 	return (
 		<section className={styles.titleInfo}>
 			<div className={styles.left}>
@@ -29,10 +35,7 @@ export function CardInfoSection({ cardId }: { cardId: string }) {
 			<div className={styles.right}>
 				<h2 className={styles.title}>{card?.title}</h2>
 				<span className={styles.episodesNumber}>
-					{card?.episodesNumber}{' '}
-					{card?.episodesNumber && card.episodesNumber % 5 === 0
-						? 'серий'
-						: 'серии'}
+					{episodesNumber} {episodesNumber % 5 === 0 ? 'серий' : 'серии'}
 				</span>
 
 				<ul className={styles.metadataWrapper}>

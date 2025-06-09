@@ -33,7 +33,7 @@ export function AddNewEpisodeForm({ cardId }: { cardId: string }) {
 				id='episode-title'
 				placeholder='Enter Episode Name: '
 				label=''
-				{...register('title', { required: 'Title Is Required!!!' })}
+				{...register('title')}
 			/>
 			<Button buttonColor='transparent' disabled={!isValid}>
 				<Plus />

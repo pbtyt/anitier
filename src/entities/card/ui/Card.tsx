@@ -36,14 +36,21 @@ export function Card({ cardData, className }: ICardProps) {
 				href={`${SITE_ROUTES_BASE.CARD}/${cardData.id}`}
 				className={clsx(styles.card, className)}
 			>
-				<div style={{ flexGrow: '1', display: 'flex', alignItems: 'center' }}>
+				<div
+					style={{
+						flexGrow: '1',
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'center',
+					}}
+				>
 					<Image
 						src={`${process.env.NEXT_PUBLIC_API_UPLOADS_URL}${cardData.posterUrl}`}
 						className={styles.cardPoster}
 					/>
 				</div>
 
-				<h2 className={styles.cardTitle}>{cardData.title}</h2>
+				<h3 className={styles.cardTitle}>{cardData.title}</h3>
 			</Link>
 			<button className={styles.editButton} onClick={handleOnEdit}>
 				<Edit size={30} />

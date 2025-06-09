@@ -1,18 +1,10 @@
 'use client';
+import { useModal } from '@/shared/hooks/useModal';
 import clsx from 'clsx';
 import { ImageUp } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import {
-	type UploadImageParams,
-	useUploadImage,
-} from '../hooks/useUploadImage';
+import { type UploadImageParams } from '../hooks/useUploadImage';
+import { useUploadImageForm } from '../hooks/useUploadImageForm';
 import styles from './UploadImage.module.scss';
-
-type FormValues = {
-	image: FileList;
-	description?: string;
-};
 
 export const UploadImage = ({
 	entityData,
@@ -24,52 +16,17 @@ export const UploadImage = ({
 	className?: string;
 }) => {
 	const {
-		register,
+		inputRef,
+		formRef,
+		handleDivClick,
 		handleSubmit,
-		formState: { errors },
-		watch,
-		reset,
-	} = useForm<FormValues>();
-
-	const { mutate, isPending, isError, isSuccess } = useUploadImage(entityData);
-	const selectedFile = watch('image')?.[0];
-
-	const onSubmit = async (data: FormValues) => {
-		if (!data.image[0]) return;
-
-		mutate(data.image[0], {
-			onSuccess: () => reset(),
-		});
-	};
-
-	const inputRef = useRef<HTMLInputElement>(null);
-
-	const { ref: formRef, ...rest } = register('image', {
-		required: 'Файл обязателен',
-		validate: {
-			fileType: files =>
-				files?.[0]?.type.startsWith('image/') || 'Только изображения',
-			fileSize: files =>
-				files?.[0]?.size <= 5 * 1024 * 1024 || 'Максимальный размер 5MB',
-		},
-	});
-
-	const handleDivClick = () => {
-		inputRef.current?.click();
-	};
-
-	//preview
-	const [preview, setPreview] = useState<string | null>(null);
-	useEffect(() => {
-		if (selectedFile) {
-			const reader = new FileReader();
-			reader.onload = () => setPreview(reader.result as string);
-			reader.readAsDataURL(selectedFile);
-		} else {
-			setPreview(null);
-		}
-	}, [selectedFile]);
-
+		onSubmit,
+		preview,
+		isPending,
+		watchFileSelected,
+		rest,
+	} = useUploadImageForm({ entityData: entityData });
+	const { showModal } = useModal();
 	return (
 		<>
 			<form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
@@ -98,9 +55,9 @@ export const UploadImage = ({
 					<p className='text-red-500 mt-1'>{errors.image.message}</p>
 				)} */}
 
-				{selectedFile && (
+				{watchFileSelected && (
 					<div className='mt-4'>
-						<p className='mb-2'>Выбран файл: {selectedFile.name}</p>
+						<p className='mb-2'>Выбран файл: {watchFileSelected.name}</p>
 						<button
 							type='submit'
 							disabled={isPending}
