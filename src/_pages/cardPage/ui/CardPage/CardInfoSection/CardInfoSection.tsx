@@ -2,7 +2,7 @@
 
 import { CARD_CONST_LABELS } from '@/entities/card';
 import { useCard } from '@/entities/card/hooks/useCard';
-import { UploadImage } from '@/features/uploadImage';
+import { UploadPoster } from '@/features/uploadPoster';
 import { Image } from '@/shared/ui/Image';
 import styles from './CardInfoSection.module.scss';
 
@@ -23,13 +23,12 @@ export function CardInfoSection({ cardId }: { cardId: string }) {
 						className={styles.titlePoster}
 					/>
 				) : (
-					<UploadImage
+					<UploadPoster
 						entityData={{ entity: 'card', entityId: cardId }}
-						desc='Отсутствует постер! Нажмите чтобы загрузить!'
+						description='Отсутствует постер! Нажмите чтобы загрузить!'
 						className={styles.titleNoPoster}
 					/>
 				)}
-				{/*button */}
 			</div>
 
 			<div className={styles.right}>

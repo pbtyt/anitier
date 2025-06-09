@@ -22,7 +22,7 @@ export function CardSelection() {
 			))}
 			<CardAdd className={styles.card} /> */}
 
-			<Scroll scrollStep={400}>
+			<Scroll scrollStep={420}>
 				{items?.map(card => (
 					<Card
 						key={card.id}

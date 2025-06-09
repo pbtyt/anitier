@@ -1,4 +1,3 @@
-import { UploadImage } from '@/features/uploadImage';
 import clsx from 'clsx';
 import { PropsWithChildren } from 'react';
 import styles from './EditCardPage.module.scss';
@@ -52,7 +51,7 @@ export function EditCardPage({ id }: { id: string }) {
 							title={'Description'}
 						/>
 						<div className={styles.chooseTitlePoster}>
-							<UploadImage entityData={{ entity: 'card', entityId: id }} />
+							{/* <UploadImage entityData={{ entity: 'card', entityId: id }} /> */}
 						</div>
 					</div>
 				</div>

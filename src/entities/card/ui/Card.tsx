@@ -1,7 +1,9 @@
 'use client';
 
 import { SITE_ROUTES_BASE } from '@/shared/config/page-url.config';
+import { useModal } from '@/shared/hooks/useModal';
 import { Image } from '@/shared/ui/Image';
+import { ConfirmPopup } from '@/shared/ui/Modal';
 import clsx from 'clsx';
 import { Edit, Trash2 } from 'lucide-react';
 import Link from 'next/link';
@@ -17,7 +19,10 @@ interface ICardProps {
 }
 
 export function Card({ cardData, className }: ICardProps) {
-	//TODO: Decompose
+	//TODO: Decompose x2 !!!!!
+
+	const { showModal } = useModal();
+
 	const { push } = useRouter();
 
 	const { deleteCard } = useDeleteCard();
@@ -55,7 +60,12 @@ export function Card({ cardData, className }: ICardProps) {
 			<button className={styles.editButton} onClick={handleOnEdit}>
 				<Edit size={30} />
 			</button>
-			<button className={styles.trashButton} onClick={handleOnDelete}>
+			<button
+				className={styles.trashButton}
+				onClick={() => {
+					showModal(<ConfirmPopup onConfirm={handleOnDelete} />);
+				}}
+			>
 				<Trash2 size={30} />
 			</button>
 		</div>

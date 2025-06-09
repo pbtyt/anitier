@@ -1,0 +1,29 @@
+.modalWrapper {
+	display: flex;
+	flex-direction: column;
+
+	color: var(--at-ui-colors-text-primary);
+	border-radius: 8px;
+	padding: 1rem;
+	background: var(--at-color-black-500);
+
+	.posterPreview {
+		align-self: center;
+		width: var(--at-ui-card-poster-width);
+		img {
+			border-radius: 6px;
+		}
+	}
+
+	.buttonsWrapper {
+		margin-top: 1rem;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+
+		button {
+			flex-grow: 1;
+			justify-content: center;
+		}
+	}
+}

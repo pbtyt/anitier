@@ -1,8 +1,9 @@
 'use client';
 
+import { CriteriaFormStateType } from '@/entities/criteria';
 import { useDeleteCriteria } from '@/entities/criteria/hooks/useDeleteCriteria';
-import { CriteriaFormStateType } from '@/entities/criteria/model/types';
 import { useModal } from '@/shared/hooks/useModal';
+import { ConfirmPopup } from '@/shared/ui/Modal';
 import { Edit, Trash2 } from 'lucide-react';
 import { useCallback } from 'react';
 import { EditCriteriaModal } from '../EditCriteriaModal/EditCriteriaModal';
@@ -14,8 +15,15 @@ export function CriteriaActionDelete({ criteriaId }: { criteriaId: string }) {
 		deleteCriteria(criteriaId);
 	}, []);
 
+	const { showModal } = useModal();
+
 	return (
-		<button className={styles.trashButton} onClick={handleOnDelete}>
+		<button
+			className={styles.trashButton}
+			onClick={() => {
+				showModal(<ConfirmPopup onConfirm={handleOnDelete} />);
+			}}
+		>
 			<Trash2 size={24} />
 		</button>
 	);

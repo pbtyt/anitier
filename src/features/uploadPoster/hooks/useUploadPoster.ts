@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 type EntityType = 'card' | 'user';
 
-export interface UploadImageParams {
+export interface UploadPosterParams {
 	entityId: string;
 	entity: EntityType;
 }
@@ -14,7 +14,7 @@ type UploadResponse = {
 	path: string;
 };
 
-export const useUploadImage = ({ entityId, entity }: UploadImageParams) => {
+export const useUploadPoster = ({ entityId, entity }: UploadPosterParams) => {
 	const url =
 		entity === 'user'
 			? `/user/profile/${entityId}/avatar`
