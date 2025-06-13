@@ -1,0 +1,21 @@
+.coverWrapper {
+	width: 85px;
+	position: relative;
+
+	.cover {
+		border-radius: 50%;
+	}
+}
+
+.coverWrapper.border::after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	border-radius: 50%;
+	border: 2px solid var(--at-ui-colors-primary);
+	margin: -4px;
+}

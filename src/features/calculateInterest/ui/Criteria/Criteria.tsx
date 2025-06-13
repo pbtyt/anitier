@@ -1,6 +1,6 @@
 'use client';
 
-import { CriteriaType } from '@/entities/card';
+import { type CriteriaType } from '@/entities/criteria';
 import { useCallback, useState } from 'react';
 import { Rating } from '../Rating/Rating';
 import styles from './Criteria.module.scss';

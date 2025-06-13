@@ -1,2 +1,2 @@
 export { axiosClassic, axiosWithAuth } from '../../shared/interceptors';
-export { type IAuthForm } from './model/types';
+export { EnumTokens, type IAuthForm } from './model/types';

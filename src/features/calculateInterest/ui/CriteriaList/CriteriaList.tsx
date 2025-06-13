@@ -1,6 +1,7 @@
 'use client';
 
-import { CriteriaType, EpisodeRatingType } from '@/entities/card';
+import { EpisodeRatingType } from '@/entities/card';
+import { type CriteriaType } from '@/entities/criteria';
 import { SetStateType } from '@/shared/utils/utilTypes';
 import { Criteria } from '../Criteria/Criteria';
 import styles from './CriteriaList.module.scss';

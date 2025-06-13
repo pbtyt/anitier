@@ -19,7 +19,7 @@ interface ICardProps {
 }
 
 export function Card({ cardData, className }: ICardProps) {
-	//TODO: Decompose x2 !!!!!
+	//TODO: Decompose x3 !!!!!
 
 	const { showModal } = useModal();
 
@@ -35,12 +35,17 @@ export function Card({ cardData, className }: ICardProps) {
 		push(`${SITE_ROUTES_BASE.EDIT_CARD}/${cardData.id}`);
 	}, []);
 
+	// const badgeBackgroundColorStyle = {
+	// 	'--badge-bg-c': getBadgeByInterest(cardData.totalCardRating).color,
+	// } as CSSProperties;
+
 	return (
 		<div className={styles.cardWrapper}>
 			<Link
 				href={`${SITE_ROUTES_BASE.CARD}/${cardData.id}`}
 				className={clsx(styles.card, className)}
 			>
+				<div className={styles.badge}></div>
 				<div
 					style={{
 						flexGrow: '1',

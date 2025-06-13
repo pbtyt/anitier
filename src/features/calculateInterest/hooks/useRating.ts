@@ -1,4 +1,5 @@
-import { CriteriaType, EpisodeRatingType } from '@/entities/card';
+import { EpisodeRatingType } from '@/entities/card';
+import { type CriteriaType } from '@/entities/criteria';
 import { useMemo } from 'react';
 import { calculateInterest } from '../helpers/calculateInterest';
 /*

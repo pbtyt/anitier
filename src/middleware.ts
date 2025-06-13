@@ -1,5 +1,5 @@
-import { EnumTokens } from '@/entities/auth/model/types';
 import { NextRequest, NextResponse } from 'next/server';
+import { EnumTokens } from './entities/auth';
 import { SITE_ROUTES_BASE } from './shared/config/page-url.config';
 
 export async function middleware(request: NextRequest, response: NextResponse) {

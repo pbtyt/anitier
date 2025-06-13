@@ -34,32 +34,46 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1.5rem;
-	}
 
-	.cardPoster {
-		--card-poster-width: 15rem;
+		.badge {
+			border: 1px solid var(--at-color-black-700);
+			border-radius: 3px;
 
-		flex-grow: 1;
+			width: 36px;
+			height: 36px;
 
-		border: 2px solid var(--at-color-black-100);
+			position: absolute;
+			top: 1rem;
+			left: 1rem;
 
-		width: var(--card-poster-width);
-		max-width: var(--card-poster-width);
-		height: auto;
-
-		border-radius: 50%;
-
-		img {
-			border-radius: 50%;
-			aspect-ratio: 1;
-			object-fit: cover;
-			object-position: center;
+			background: var(--badge-bg-c);
 		}
-	}
 
-	.cardTitle {
-		text-align: center;
-		line-height: 1.2;
+		.cardPoster {
+			--card-poster-width: 15rem;
+
+			flex-grow: 1;
+
+			border: 2px solid var(--at-color-black-100);
+
+			width: var(--card-poster-width);
+			max-width: var(--card-poster-width);
+			height: auto;
+
+			border-radius: 50%;
+
+			img {
+				border-radius: 50%;
+				aspect-ratio: 1;
+				object-fit: cover;
+				object-position: center;
+			}
+		}
+
+		.cardTitle {
+			text-align: center;
+			line-height: 1.2;
+		}
 	}
 
 	.trashButton,

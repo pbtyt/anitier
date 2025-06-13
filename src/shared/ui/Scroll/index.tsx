@@ -123,9 +123,8 @@ export function Scroll({
 	normalize = 500,
 }: PropsWithChildren<IScroll>) {
 	const scrollRef = useRef<HTMLDivElement>(null);
-
 	return (
-		<div className={styles.scrollWrapper}>
+		<div className={styles.scrollWrapper} onWheel={e => {}}>
 			<div className={clsx(styles.scroll, className)} ref={scrollRef}>
 				{children}
 			</div>

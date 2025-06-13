@@ -68,6 +68,12 @@ button {
 	background: transparent;
 	cursor: pointer;
 	user-select: none;
+	transition: transform 150ms ease;
+}
+
+button:active {
+	transition: transform 150ms ease;
+	transform: scale(0.96);
 }
 
 a {

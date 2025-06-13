@@ -8,20 +8,9 @@ import styles from './CardSelection.module.scss';
 
 export function CardSelection() {
 	const { items } = useCards({ fields: 'id,title,posterUrl' });
+
 	return (
 		<section className={styles.cardsContainer}>
-			{/* {items?.map(card => (
-				<Card
-					key={card.id}
-					cardData={{
-						id: card.id,
-						title: card.title,
-						posterUrl: card.posterUrl!,
-					}}
-				/>
-			))}
-			<CardAdd className={styles.card} /> */}
-
 			<Scroll scrollStep={420}>
 				{items?.map(card => (
 					<Card

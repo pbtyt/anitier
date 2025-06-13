@@ -29,6 +29,7 @@ export interface ICardResponse {
 	status: CardStatusType;
 	type: CardTypeType;
 	episodesNumber: number;
+	totalCardRating: number;
 
 	criteria?: CriteriaType[];
 	episodes?: EpisodeType[];

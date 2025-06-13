@@ -1,8 +1,10 @@
 import { SITE_NAME } from '@/shared/constants/seo.constants';
 import { Modals } from './(components)/modals';
 
+import { Header } from '@/widgets/header';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { Popovers } from './(components)/popovers';
 import { Providers } from './(components)/providers';
 import './styles/global.scss';
 
@@ -34,9 +36,12 @@ export default function RootLayout({
 		<html lang='en'>
 			<body id='body' className={zen.className} style={{}}>
 				<Providers>
+					<Header />
 					{children}
 					<div id='modal-root'></div>
+					<div id='popover-root'></div>
 					<Modals />
+					<Popovers />
 				</Providers>
 			</body>
 		</html>
