@@ -14,13 +14,13 @@ export function ProfileImage({
 	border = false,
 	className,
 }: ProfileImageProps) {
-	const { ref, openPopover } = usePopover<HTMLDivElement>(
+	const { ref: parentRef, openPopover } = usePopover<HTMLDivElement>(
 		<div>TESTING LONG POPOVER</div>
 	);
 
 	return (
 		<div
-			ref={ref}
+			ref={parentRef}
 			onClick={openPopover}
 			style={coverWidth ? { width: `${coverWidth}px` } : {}}
 			className={clsx(styles.coverWrapper, { [styles.border]: border })}

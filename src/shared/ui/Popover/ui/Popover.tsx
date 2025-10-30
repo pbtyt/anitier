@@ -1,5 +1,6 @@
 'use client';
 
+import { useOutside } from '@/shared/hooks/useOutside';
 import { ElementPositionType } from '@/shared/types/base.types';
 import { getPosition } from '@/shared/utils/getElementPosition';
 import { getSize } from '@/shared/utils/getElementSize';
@@ -84,9 +85,20 @@ export function usePopover<T extends HTMLElement>(
 	const { setActivePopover } = usePopoverContext();
 	const ref = useRef<T>(null);
 
-	const openPopover = () => {
-		if (!ref.current) return;
+	const handleClosePopover = () => {
+		setActivePopover(null);
+	};
+	const {
+		isShow,
+		ref: outsideRef,
+		setIsShow,
+	} = useOutside(true, handleClosePopover);
 
+	const openPopover = () => {
+		setIsShow(true);
+
+		// Calculate Popover Position
+		if (!ref.current || !isShow) return;
 		const elementSize = getSize(ref.current);
 		const elementPosition = getPosition(ref.current);
 		const popoverSpawnPosition: ElementPositionType = {
@@ -94,8 +106,13 @@ export function usePopover<T extends HTMLElement>(
 			left: elementPosition.left + elementSize.width,
 		};
 
+		// Spawn Popover
 		setActivePopover(
-			<Popover id='popover' position={popoverSpawnPosition}>
+			<Popover
+				id='popover'
+				position={popoverSpawnPosition}
+				popoverRef={outsideRef}
+			>
 				{PopoverElement}
 			</Popover>
 		);
