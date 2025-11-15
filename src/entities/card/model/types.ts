@@ -1,21 +1,14 @@
-//TODO: Rewrite all types
-
 import { type CriteriaType } from '@/entities/criteria';
+import { type IEpisodeResponse } from '@/entities/episode';
 import { TypeFrom } from '@/shared/utils/utilTypes';
 
+//NOTE: Using only in store
 export type CardType = {
 	id: number;
 	title: string;
 	posterUrl?: string;
 
 	criteria: CriteriaType[];
-};
-
-export type EpisodeRatingType = { rating: number; criteriaId: string };
-export type EpisodeType = {
-	id: string;
-	title: string;
-	episodeRating: EpisodeRatingType[];
 };
 
 export interface ICardResponse {
@@ -29,23 +22,21 @@ export interface ICardResponse {
 	status: CardStatusType;
 	type: CardTypeType;
 	episodesNumber: number;
-	totalCardRating: number;
 
 	criteria?: CriteriaType[];
-	episodes?: EpisodeType[];
+	episodes?: IEpisodeResponse[];
 }
 
 export const Type = {
 	TV: 'TV',
 	FILM: 'FILM',
 } as const;
+export type CardTypeType = TypeFrom<typeof Type>;
 
 export const Status = {
 	ONGOING: 'ONGOING',
 	FINISHED: 'FINISHED',
 } as const;
-
-export type CardTypeType = TypeFrom<typeof Type>;
 export type CardStatusType = TypeFrom<typeof Status>;
 
 export type CardFormStateType = Partial<
