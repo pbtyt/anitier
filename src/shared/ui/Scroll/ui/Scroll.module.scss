@@ -1,0 +1,71 @@
+.wrapper {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	.scrollable {
+		padding: 2rem 1rem;
+
+		display: flex;
+		gap: 1rem;
+		justify-content: flex-start;
+		align-items: center;
+
+		overflow-x: auto;
+		scrollbar-width: none;
+		scroll-behavior: smooth;
+		scroll-snap-type: x mandatory;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+	.scrollable {
+		gap: 0.5rem;
+	}
+}
+
+.arrowWrapper {
+	--arrow-size: 3.4rem;
+
+	display: flex;
+	align-items: center;
+
+	position: absolute;
+	top: calc(50% - (var(--arrow-size) / 2));
+
+	height: var(--arrow-size);
+	width: var(--arrow-size);
+
+	.arrow {
+		display: none;
+
+		position: relative;
+
+		width: var(--arrow-size);
+		height: var(--arrow-size);
+
+		background-color: #303032;
+		box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px;
+		border-radius: 50%;
+
+		cursor: pointer;
+	}
+
+	&.right {
+		right: 0;
+		justify-content: end;
+	}
+
+	&.left {
+		left: 0;
+		justify-content: start;
+	}
+}
