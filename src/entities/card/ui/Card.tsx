@@ -14,7 +14,7 @@ import { ICardResponse } from '../model/types';
 import styles from './Card.module.scss';
 
 interface ICardProps {
-	cardData: Required<Pick<ICardResponse, 'title' | 'posterUrl' | 'id'>>;
+	cardData: Pick<ICardResponse, 'title' | 'posterUrl' | 'id'>;
 	className?: string;
 }
 
@@ -39,6 +39,10 @@ export function Card({ cardData, className }: ICardProps) {
 	// 	'--badge-bg-c': getBadgeByInterest(cardData.totalCardRating).color,
 	// } as CSSProperties;
 
+	const posterUrl = cardData.posterUrl
+		? `${process.env.NEXT_PUBLIC_API_UPLOADS_URL}${cardData.posterUrl}`
+		: '/placeholders/poster_placeholder.jpg';
+
 	return (
 		<div className={styles.cardWrapper}>
 			<Link
@@ -54,10 +58,7 @@ export function Card({ cardData, className }: ICardProps) {
 						justifyContent: 'center',
 					}}
 				>
-					<Image
-						src={`${process.env.NEXT_PUBLIC_API_UPLOADS_URL}${cardData.posterUrl}`}
-						className={styles.cardPoster}
-					/>
+					<Image src={posterUrl} className={styles.cardPoster} />
 				</div>
 
 				<h3 className={styles.cardTitle}>{cardData.title}</h3>

@@ -1,4 +1,5 @@
 'use client';
+import { ProfilePopover } from '@/features/profilePopover';
 import { usePopover } from '@/shared/ui/Popover';
 import clsx from 'clsx';
 import styles from './ProfileImage.module.scss';
@@ -8,14 +9,14 @@ interface ProfileImageProps {
 	border?: boolean;
 	className?: string;
 }
-
+//TODO: Move To Widget Layer
 export function ProfileImage({
 	coverWidth = 0,
 	border = false,
 	className,
 }: ProfileImageProps) {
 	const { ref: parentRef, openPopover } = usePopover<HTMLDivElement>(
-		<div>TESTING LONG POPOVER</div>
+		<ProfilePopover />
 	);
 
 	return (

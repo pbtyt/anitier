@@ -18,7 +18,7 @@ export function CardSelection() {
 						cardData={{
 							id: card.id,
 							title: card.title,
-							posterUrl: card.posterUrl!,
+							posterUrl: card.posterUrl,
 						}}
 					/>
 				))}

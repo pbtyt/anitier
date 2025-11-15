@@ -54,23 +54,6 @@ export const AddCardStep = memo(function AddCardStep({
 						console.log(e.target.value);
 					}}
 				/>
-				{/*TODO: <Input
-					placeholder='Название на английском'
-					value={title}
-					onChange={e => {
-						//TODO: need add debounce 
-						setTitle(e.target.value);
-						console.log(e.target.value);
-					}}
-				/>
-				<Input
-					placeholder='Название на русском'
-					value={title}
-					onChange={e => {
-						setTitle(e.target.value);
-						console.log(e.target.value);
-					}}
-				/> */}
 
 				<h4 className={styles.sectionSubTitle}>Сведения</h4>
 

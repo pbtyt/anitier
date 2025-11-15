@@ -6,7 +6,7 @@ import { useAddNewCardContext } from '../../addNewCardContext/AddNewCardContext'
 import { useEditingCriteriaContext } from '../editingCriteriaContext/EditingCriteriaContext';
 import styles from './CriteriaList.module.scss';
 
-//SOLID POSHEL NXA V ETOM KOMPONENTE
+//SOLID ???
 //TODO: Remove Button from this component
 export function CriteriaList() {
 	const { title } = useAddNewCardContext();

@@ -45,14 +45,12 @@ export function CardInfoSection({ cardId }: { cardId: string }) {
 					<li className={styles.metadataInfo}>
 						<span className={styles.title}>Тип</span>
 						<span className={styles.value}>
-							{/* TODO: ??? */}
 							{card?.type ? CARD_CONST_LABELS[card.type] : ''}
 						</span>
 					</li>
 					<li className={styles.metadataInfo}>
 						<span className={styles.title}>Статус</span>
 						<span className={styles.value}>
-							{/* TODO: ??? */}
 							{card?.status ? CARD_CONST_LABELS[card.status] : ''}
 						</span>
 					</li>

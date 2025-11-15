@@ -6,6 +6,8 @@ interface ICustomProgressBarProps {
 	percentage: number;
 }
 
+//TODO: Add Progressbar Percentage Element To Props.
+//TODO: Re-write with compound components pattern?
 export function CustomProgressBar({ percentage }: ICustomProgressBarProps) {
 	const progressBarSetting = {
 		'--percentage': `${percentage}%`,

@@ -40,4 +40,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-anitier folder features.png
+*.png
+anitier-insomnia.yaml

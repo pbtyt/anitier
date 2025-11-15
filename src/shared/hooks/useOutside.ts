@@ -10,7 +10,6 @@ export const useOutside = (
 	initialIsVisible: boolean,
 	onClose: () => void = () => {}
 ): TypeOut => {
-	//TODO: UseCallback Wrapper Need And useMemo too (mb) ????/
 	const [isShow, setIsShow] = useState<boolean>(initialIsVisible);
 	const ref = useRef<HTMLElement>(null);
 

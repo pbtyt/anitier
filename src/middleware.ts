@@ -24,7 +24,6 @@ export async function middleware(request: NextRequest, response: NextResponse) {
 	return NextResponse.next();
 }
 
-//TODO: FIX ME
 export const config = {
 	matcher: ['/h/:path*', '/auth/:path'],
 };

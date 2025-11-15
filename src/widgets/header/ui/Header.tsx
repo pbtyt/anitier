@@ -39,7 +39,6 @@ export function Header() {
 				</ul>
 			</nav>
 
-			{/* TODO: Account Button */}
 			<Profile />
 		</header>
 	);

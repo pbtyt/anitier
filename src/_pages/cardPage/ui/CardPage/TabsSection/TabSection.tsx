@@ -5,7 +5,6 @@ import { CriteriaTab } from '../CriteriaTab/CriteriaTab';
 import { EpisodeTab } from '../EpisodeTab/EpisodeTab';
 import styles from './TabSection.module.scss';
 export function TabSection({ cardId }: { cardId: string }) {
-	//TODO: Second Tab (Edit/Create/Delete Criteria)
 	return (
 		<UpTabs className={styles.tabWrapper}>
 			<UpTabs.TabsHeader>

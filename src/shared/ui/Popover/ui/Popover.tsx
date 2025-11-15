@@ -103,7 +103,7 @@ export function usePopover<T extends HTMLElement>(
 		const elementPosition = getPosition(ref.current);
 		const popoverSpawnPosition: ElementPositionType = {
 			top: elementPosition.top + elementSize.height,
-			left: elementPosition.left + elementSize.width,
+			left: elementPosition.left + elementSize.width / 2,
 		};
 
 		// Spawn Popover

@@ -3,7 +3,6 @@ import { PropsWithChildren } from 'react';
 import styles from './EditCardPage.module.scss';
 
 interface IInputBlock {
-	//TODO: Remove "?"
 	gridMarker: string;
 	placeholder: string;
 	title: string;
