@@ -1,65 +1,119 @@
-.titleInfo {
+.promo {
 	display: flex;
-	align-items: flex-start;
-	gap: 1.5rem;
+	gap: 4rem;
 
-	.left {
-		.titleNoPoster {
-			width: 200px;
-			height: auto;
+	--poster-width: 260px;
+	.noPoster {
+		min-width: var(--poster-width);
+		height: auto;
+		aspect-ratio: 3 / 4;
+	}
+
+	.poster {
+		min-width: var(--poster-width);
+		img {
+			border-radius: 8px;
 			aspect-ratio: 3 / 4;
-		}
-
-		.titlePoster {
-			width: 200px;
-
-			img {
-				border-radius: 8px;
-
-				// aspect-ratio: 1 / 1.4;
-				aspect-ratio: 3 / 4;
-				object-fit: cover;
-			}
+			object-fit: cover;
 		}
 	}
 
-	.right {
-		width: 50%;
-
+	.info {
+		width: 100%;
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
+		align-items: flex-start;
+		gap: 1.5rem;
 
-		.episodesNumber {
-			color: var(--at-ui-colors-primary);
+		// .title {
+		// 	color: var(--at-color-white-500);
+
+		// 	//TODO: Make "universal" var for auto-choose desktop/mobile/tablet
+		// 	font-size: calc(var(--at-ui-text-fs-standard-desktop) * 0.9);
+		// }
+
+		.rating {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 0.5rem;
+
+			.icon {
+				color: var(--at-color-gray-200);
+			}
+
+			span {
+				color: var(--at-color-white-800);
+
+				font-size: calc(var(--at-ui-text-fs-standard-desktop) * 0.9);
+			}
 		}
 
-		.metadataWrapper {
-			.metadataInfo {
-				width: 100%;
+		.actions {
+			width: 100%;
 
-				padding: 0.95rem 0;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
 
-				border-bottom: 1px solid var(--at-color-black-300);
-
+			.left {
 				display: flex;
 				align-items: center;
+				gap: 1rem;
+			}
 
-				.title,
-				.value,
-				.valueWrapper {
-					color: var(--at-color-white-500);
+			.right {
+			}
+		}
+	}
+}
 
-					font-size: calc(var(--at-ui-text-fs-standard-desktop) * 0.9);
+.content {
+	.overview {
+		display: flex;
+		align-items: flex-start;
+		gap: 4rem;
+
+		.details,
+		.description {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 1rem;
+		}
+		.details {
+			.detailsList {
+				.detail {
+					width: 100%;
+
+					padding: 0.75rem 0;
+
+					// border-bottom: 1px solid var(--at-color-black-300);
+
+					display: flex;
+					align-items: center;
+
+					.title,
+					.value {
+						font-size: calc(var(--at-ui-text-fs-standard-desktop) * 0.9);
+					}
+
+					.title {
+						width: 150px;
+
+						color: var(--at-color-gray-50);
+					}
+
+					.value {
+						color: var(--at-color-white-500);
+					}
 				}
+			}
+		}
 
-				.title {
-					width: 200px;
-				}
-
-				.value,
-				.valueWrapper {
-				}
+		.description {
+			.text {
+				color: var(--at-color-white-500);
 			}
 		}
 	}

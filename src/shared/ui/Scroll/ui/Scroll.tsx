@@ -1,9 +1,8 @@
 'use client';
 
-import { remToPx } from '@/shared/utils/math';
 import clsx from 'clsx';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Children, PropsWithChildren, useRef, useState } from 'react';
+import { PropsWithChildren, useRef, useState } from 'react';
 import styles from './Scroll.module.scss';
 
 enum ArrowDirection {
@@ -71,22 +70,30 @@ export function ScrollArrow({ direction, onClick }: IScrollArrowProps) {
 	);
 }
 
-export const useScroll = (itemsAmount: number) => {
+export const useScroll = () => {
 	const scrollableRef = useRef<HTMLDivElement>(null);
 
 	const onScroll = (direction: ArrowDirection) => {
-		if (!scrollableRef.current || !itemsAmount) return;
+		if (!scrollableRef.current) return;
 
-		const gapAmount = itemsAmount - 1;
-		const scrollableAreaWidth = scrollableRef.current.scrollWidth;
-		const pureScrollableAreaWidth = scrollableAreaWidth - remToPx(gapAmount);
+		const container = scrollableRef.current;
+		const firstChild = container.firstElementChild;
+		if (!firstChild) return;
 
-		const scrollStep = pureScrollableAreaWidth / itemsAmount + remToPx(1);
+		const childWidth = firstChild.getBoundingClientRect().width;
+		const gap = parseFloat(getComputedStyle(container).gap) || 0;
+		const scrollStep = childWidth + gap;
 
-		scrollableRef.current.scrollLeft += direction * scrollStep;
+		container.scrollBy({
+			left: direction * scrollStep,
+			behavior: 'smooth',
+		});
 	};
 
-	return { scrollableRef, onScroll };
+	return {
+		scrollableRef,
+		onScroll,
+	};
 };
 
 interface IScrollProps {
@@ -98,7 +105,7 @@ export function Scroll({
 }: PropsWithChildren<IScrollProps>) {
 	if (!children) return <>use with children prop!</>;
 
-	const { scrollableRef, onScroll } = useScroll(Children.count(children));
+	const { scrollableRef, onScroll } = useScroll();
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.scrollable} ref={scrollableRef}>
@@ -108,6 +115,7 @@ export function Scroll({
 			{withArrows && (
 				<>
 					<ScrollArrow direction={ArrowDirection.Right} onClick={onScroll} />
+
 					<ScrollArrow direction={ArrowDirection.Left} onClick={onScroll} />
 				</>
 			)}

@@ -108,6 +108,6 @@ export function UpTabs({
 /*============TAB COMPONENTS============*/
 
 // UpTabs.Tab = Tab;
-UpTabs.TabsHeader = Header;
+UpTabs.Header = Header;
 UpTabs.Tab = Tab;
 UpTabs.Content = Content;
